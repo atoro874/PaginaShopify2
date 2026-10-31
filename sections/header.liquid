@@ -100,6 +100,20 @@
   }
 </style>
 
+<style>
+  .utility-bar.color-scheme-1 {
+    --color-background: 57, 16, 20;
+    --color-foreground: 238, 228, 218;
+    --gradient-background: #391014;
+  }
+
+  .header-wrapper.color-scheme-1 {
+    --color-background: 238, 228, 218;
+    --color-foreground: 77, 14, 19;
+    --gradient-background: #eee4da;
+  }
+</style>
+
 {%- style -%}
   .header {
     padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;

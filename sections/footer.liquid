@@ -15,6 +15,16 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  .footer.color-scheme-1 {
+    --color-background: 57, 16, 20;
+    --color-foreground: 238, 228, 218;
+    --color-button: 238, 228, 218;
+    --color-button-text: 57, 16, 20;
+    --color-secondary-button: 57, 16, 20;
+    --color-secondary-button-text: 238, 228, 218;
+    --gradient-background: #391014;
+  }
+
   @media screen and (min-width: 750px) {
     .footer {
       margin-top: {{ section.settings.margin_top }}px;
