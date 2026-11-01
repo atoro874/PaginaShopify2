@@ -989,43 +989,53 @@
               <a href="{{ section.settings.related_link }}">{{ section.settings.related_link_label | escape }}</a>
             {%- endif -%}
           </div>
-          <div class="zz-related-products__grid">
-            {%- for block in related_product_blocks -%}
-              {%- assign related_product = block.settings.product -%}
-              {%- assign related_link = block.settings.link -%}
-              {%- assign related_title = block.settings.title -%}
-              {%- if related_product != blank -%}
-                {%- assign related_link = related_product.url -%}
-                {%- assign related_title = related_product.title -%}
-              {%- endif -%}
-              {%- if related_link != blank -%}
-                <a class="zz-related-product" href="{{ related_link }}" {{ block.shopify_attributes }}>
-              {%- else -%}
-                <article class="zz-related-product" {{ block.shopify_attributes }}>
-              {%- endif -%}
-                <div class="zz-related-product__image">
-                  {%- if related_product != blank and related_product.featured_image != blank -%}
-                    {{ related_product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: related_product.title }}
-                  {%- elsif block.settings.image != blank -%}
-                    {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: related_title }}
-                  {%- else -%}
-                    {{ 'product-1' | placeholder_svg_tag }}
-                  {%- endif -%}
+          <div
+            class="zz-related-products__grid"
+            role="region"
+            aria-label="{{ section.settings.related_heading | escape }}"
+          >
+            <div class="zz-related-products__track">
+              {%- for copy in (1..2) -%}
+                <div class="zz-related-products__group"{% if copy == 2 %} aria-hidden="true" inert{% endif %}>
+                  {%- for block in related_product_blocks -%}
+                    {%- assign related_product = block.settings.product -%}
+                    {%- assign related_link = block.settings.link -%}
+                    {%- assign related_title = block.settings.title -%}
+                    {%- if related_product != blank -%}
+                      {%- assign related_link = related_product.url -%}
+                      {%- assign related_title = related_product.title -%}
+                    {%- endif -%}
+                    {%- if related_link != blank -%}
+                      <a class="zz-related-product" href="{{ related_link }}"{% if copy == 1 %} {{ block.shopify_attributes }}{% endif %}>
+                    {%- else -%}
+                      <article class="zz-related-product"{% if copy == 1 %} {{ block.shopify_attributes }}{% endif %}>
+                    {%- endif -%}
+                      <div class="zz-related-product__image">
+                        {%- if related_product != blank and related_product.featured_image != blank -%}
+                          {{ related_product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: related_product.title }}
+                        {%- elsif block.settings.image != blank -%}
+                          {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: related_title }}
+                        {%- else -%}
+                          {{ 'product-1' | placeholder_svg_tag }}
+                        {%- endif -%}
+                      </div>
+                      {%- if related_title != blank -%}
+                        <h3>{{ related_title | escape }}</h3>
+                      {%- endif -%}
+                      {%- if block.settings.price != blank -%}
+                        <p>{{ block.settings.price | escape }}</p>
+                      {%- elsif related_product != blank -%}
+                        {%- render 'price', product: related_product -%}
+                      {%- endif -%}
+                    {%- if related_link != blank -%}
+                      </a>
+                    {%- else -%}
+                      </article>
+                    {%- endif -%}
+                  {%- endfor -%}
                 </div>
-                {%- if related_title != blank -%}
-                  <h3>{{ related_title | escape }}</h3>
-                {%- endif -%}
-                {%- if block.settings.price != blank -%}
-                  <p>{{ block.settings.price | escape }}</p>
-                {%- elsif related_product != blank -%}
-                  {%- render 'price', product: related_product -%}
-                {%- endif -%}
-              {%- if related_link != blank -%}
-                </a>
-              {%- else -%}
-                </article>
-              {%- endif -%}
-            {%- endfor -%}
+              {%- endfor -%}
+            </div>
           </div>
         </section>
       {%- endif -%}
