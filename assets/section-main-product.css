@@ -222,7 +222,7 @@ product-info[id^='MainProduct-'] .product-form__submit:focus-visible {
 
 product-info[id^='MainProduct-'] .product-benefits {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--product-benefit-columns, 3), minmax(0, 1fr));
   gap: 0.8rem;
   margin: 1.6rem 0 0;
   padding: 1.2rem;
@@ -261,6 +261,17 @@ product-info[id^='MainProduct-'] .product-benefits__icon svg {
 .product-form__submit[disabled] + .shopify-payment-button .shopify-payment-button__button[disabled] {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+product-info[id^='MainProduct-'] .product-benefits__icon img {
+  display: block;
+  width: 1.8rem;
+  height: 1.8rem;
+  object-fit: contain;
+}
+
+.product__title h1 {
+  color: var(--product-title-color, inherit);
 }
 
 @media screen and (max-width: 749px) {
@@ -507,12 +518,54 @@ product-info[id^='MainProduct-'] .product-benefits__icon svg {
     width: 5.6rem;
   }
 
+  .zz-product-gallery__thumbnail {
+    width: var(--zz-thumbnail-size);
+  }
+
   .zz-product-gallery__dialog {
     width: 100vw;
     height: 100dvh;
     padding: 5rem 0.5rem 1rem;
     border-radius: 0;
   }
+}
+
+.zz-product-gallery {
+  --zz-thumbnail-size: 6.4rem;
+  --zz-gallery-ratio: 1 / 1;
+  --zz-gallery-fit: contain;
+}
+
+.zz-product-gallery[data-thumbnail-position='bottom'] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.zz-product-gallery[data-thumbnail-position='bottom'] .zz-product-gallery__stage {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.zz-product-gallery[data-thumbnail-position='bottom'] .zz-product-gallery__thumbnails {
+  grid-column: 1;
+  grid-row: 2;
+  flex-direction: row;
+  max-height: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.zz-product-gallery__thumbnail {
+  width: var(--zz-thumbnail-size);
+}
+
+.zz-product-gallery__image,
+.zz-product-gallery__placeholder {
+  aspect-ratio: var(--zz-gallery-ratio);
+}
+
+.zz-product-gallery__image img,
+.zz-product-gallery__placeholder {
+  object-fit: var(--zz-gallery-fit);
 }
 
 /* Overrides */

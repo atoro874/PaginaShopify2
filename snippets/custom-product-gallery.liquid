@@ -5,8 +5,20 @@
     {%- assign gallery_image_count = gallery_image_count | plus: 1 -%}
   {%- endif -%}
 {%- endfor -%}
+{%- assign gallery_image_ratio = '1 / 1' -%}
+{%- case section.settings.gallery_image_ratio -%}
+  {%- when 'portrait' -%}
+    {%- assign gallery_image_ratio = '4 / 5' -%}
+  {%- when 'natural' -%}
+    {%- assign gallery_image_ratio = 'auto' -%}
+{%- endcase -%}
 
-<div class="zz-product-gallery" data-zz-product-gallery>
+<div
+  class="zz-product-gallery"
+  style="--zz-thumbnail-size: {{ section.settings.gallery_thumbnail_size }}px; --zz-gallery-ratio: {{ gallery_image_ratio }}; --zz-gallery-fit: {{ section.settings.gallery_image_fit }};"
+  data-thumbnail-position="{{ section.settings.gallery_thumbnail_position }}"
+  data-zz-product-gallery
+>
   <div class="zz-product-gallery__thumbnails" role="group" aria-label="Imágenes del producto">
     {%- if gallery_image_count > 0 -%}
       {%- assign rendered_image_count = 0 -%}

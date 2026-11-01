@@ -114,20 +114,32 @@
                     {{- block.settings.text -}}
                   </p>
                 {%- when 'title' -%}
-                  <div class="product__title" {{ block.shopify_attributes }}>
-                    <h1>{{ product.title | escape }}</h1>
+                  <div
+                    class="product__title"
+                    style="--product-title-color: {{ block.settings.title_color }}; text-align: {{ block.settings.alignment }};"
+                    {{ block.shopify_attributes }}
+                  >
+                    <h1 class="{{ block.settings.heading_size }}">
+                      {{- block.settings.custom_title | default: product.title | escape -}}
+                    </h1>
                     <a href="{{ product.url }}" class="product__title">
-                      <h2 class="h1">
-                        {{ product.title | escape }}
+                      <h2 class="{{ block.settings.heading_size }}">
+                        {{ block.settings.custom_title | default: product.title | escape }}
                       </h2>
                     </a>
                   </div>
                 {%- when 'price' -%}
-                  <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                  <div
+                    id="price-{{ section.id }}"
+                    class="product-price-block"
+                    style="text-align: {{ block.settings.alignment }};"
+                    role="status"
+                    {{ block.shopify_attributes }}
+                  >
                     {%- render 'price',
                       product: product,
                       use_variant: true,
-                      show_badges: true,
+                      show_badges: block.settings.show_badges,
                       price_class: 'price--large'
                     -%}
                   </div>
@@ -150,13 +162,15 @@
                       {%- endif -%}
                     </div>
                   {%- endif -%}
-                  <div {{ block.shopify_attributes }}>
-                    {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
-                    {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
-                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                      {{ form | payment_terms }}
-                    {%- endform -%}
-                  </div>
+                  {%- if block.settings.show_payment_terms -%}
+                    <div {{ block.shopify_attributes }}>
+                      {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
+                      {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
+                        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                        {{ form | payment_terms }}
+                      {%- endform -%}
+                    </div>
+                  {%- endif -%}
                 {%- when 'inventory' -%}
                   <p
                     class="product__inventory{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
@@ -209,9 +223,10 @@
                     {%- endif -%}
                   </p>
                 {%- when 'description' -%}
-                  {%- if product.description != blank -%}
+                  {%- assign product_description = block.settings.custom_description | default: product.description -%}
+                  {%- if product_description != blank -%}
                     <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
-                      {{ product.description }}
+                      {{ product_description }}
                     </div>
                   {%- endif -%}
                 {%- when 'sku' -%}
@@ -513,39 +528,75 @@
                     show_pickup_availability: true
                   -%}
                 {%- when 'product_benefits' -%}
-                  <ul class="product-benefits" aria-label="Beneficios de compra" {{ block.shopify_attributes }}>
-                    <li class="product-benefits__item">
-                      <span class="product-benefits__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" focusable="false">
-                          <path d="M2 5h12v12H2zM14 9h4l4 4v4h-8z" />
-                          <circle cx="7" cy="19" r="2" />
-                          <circle cx="18" cy="19" r="2" />
-                        </svg>
-                      </span>
-                      <span>Envío gratis</span>
-                    </li>
-                    <li class="product-benefits__item">
-                      <span class="product-benefits__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" focusable="false">
-                          <path d="m12 3 9 4v5c0 5-3.5 8-9 10-5.5-2-9-5-9-10V7l9-4Z" />
-                          <path d="m8 12 3 3 5-6" />
-                        </svg>
-                      </span>
-                      <span>Envío seguro</span>
-                    </li>
-                    <li class="product-benefits__item">
-                      <span class="product-benefits__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" focusable="false">
-                          <rect x="3" y="5" width="18" height="14" rx="2" />
-                          <path d="M3 10h18M7 15h4" />
-                        </svg>
-                      </span>
-                      <span>Pago contra entrega</span>
-                    </li>
-                  </ul>
+                  {%- assign has_product_benefit = false -%}
+                  {%- if block.settings.show_benefit_1 and block.settings.benefit_1 != blank
+                    or block.settings.show_benefit_2 and block.settings.benefit_2 != blank
+                    or block.settings.show_benefit_3 and block.settings.benefit_3 != blank
+                  -%}
+                    {%- assign has_product_benefit = true -%}
+                  {%- endif -%}
+                  {%- if has_product_benefit -%}
+                    <ul
+                      class="product-benefits"
+                      style="--product-benefit-columns: {{ block.settings.columns }};"
+                      aria-label="{{ block.settings.accessibility_label | escape }}"
+                      {{ block.shopify_attributes }}
+                    >
+                      {%- if block.settings.show_benefit_1 and block.settings.benefit_1 != blank -%}
+                        <li class="product-benefits__item">
+                          <span class="product-benefits__icon" aria-hidden="true">
+                            {%- if block.settings.icon_1 != blank -%}
+                              {{ block.settings.icon_1 | image_url: width: 72 | image_tag: loading: 'lazy', alt: '' }}
+                            {%- else -%}
+                              <svg viewBox="0 0 24 24" fill="none" focusable="false">
+                                <path d="M2 5h12v12H2zM14 9h4l4 4v4h-8z" />
+                                <circle cx="7" cy="19" r="2" />
+                                <circle cx="18" cy="19" r="2" />
+                              </svg>
+                            {%- endif -%}
+                          </span>
+                          <span>{{ block.settings.benefit_1 | escape }}</span>
+                        </li>
+                      {%- endif -%}
+                      {%- if block.settings.show_benefit_2 and block.settings.benefit_2 != blank -%}
+                        <li class="product-benefits__item">
+                          <span class="product-benefits__icon" aria-hidden="true">
+                            {%- if block.settings.icon_2 != blank -%}
+                              {{ block.settings.icon_2 | image_url: width: 72 | image_tag: loading: 'lazy', alt: '' }}
+                            {%- else -%}
+                              <svg viewBox="0 0 24 24" fill="none" focusable="false">
+                                <path d="m12 3 9 4v5c0 5-3.5 8-9 10-5.5-2-9-5-9-10V7l9-4Z" />
+                                <path d="m8 12 3 3 5-6" />
+                              </svg>
+                            {%- endif -%}
+                          </span>
+                          <span>{{ block.settings.benefit_2 | escape }}</span>
+                        </li>
+                      {%- endif -%}
+                      {%- if block.settings.show_benefit_3 and block.settings.benefit_3 != blank -%}
+                        <li class="product-benefits__item">
+                          <span class="product-benefits__icon" aria-hidden="true">
+                            {%- if block.settings.icon_3 != blank -%}
+                              {{ block.settings.icon_3 | image_url: width: 72 | image_tag: loading: 'lazy', alt: '' }}
+                            {%- else -%}
+                              <svg viewBox="0 0 24 24" fill="none" focusable="false">
+                                <rect x="3" y="5" width="18" height="14" rx="2" />
+                                <path d="M3 10h18M7 15h4" />
+                              </svg>
+                            {%- endif -%}
+                          </span>
+                          <span>{{ block.settings.benefit_3 | escape }}</span>
+                        </li>
+                      {%- endif -%}
+                    </ul>
+                  {%- endif -%}
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
-                    <div class="rating-wrapper">
+                    <div
+                      class="rating-wrapper"
+                      style="text-align: {{ block.settings.alignment }};"
+                      {{ block.shopify_attributes }}
+                    >
                       {% liquid
                         assign rating_decimal = 0
                         assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
@@ -572,13 +623,15 @@
                           {{ product.metafields.reviews.rating.value.scale_max -}}
                         </span>
                       </p>
-                      <p class="rating-count caption">
-                        <span aria-hidden="true">({{ product.metafields.reviews.rating_count }})</span>
-                        <span class="visually-hidden">
-                          {{- product.metafields.reviews.rating_count }}
-                          {{ 'accessibility.total_reviews' | t -}}
-                        </span>
-                      </p>
+                      {%- if block.settings.show_count -%}
+                        <p class="rating-count caption">
+                          <span aria-hidden="true">({{ product.metafields.reviews.rating_count }})</span>
+                          <span class="visually-hidden">
+                            {{- product.metafields.reviews.rating_count }}
+                            {{ 'accessibility.total_reviews' | t -}}
+                          </span>
+                        </p>
+                      {%- endif -%}
                     </div>
                   {%- endif -%}
                 {%- when 'complementary' -%}
@@ -860,12 +913,73 @@
     {
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Título personalizado (opcional)",
+          "info": "Si lo dejas vacío, se usa el título guardado en el producto."
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Tamaño del título",
+          "options": [
+            { "value": "h2", "label": "Pequeño" },
+            { "value": "h1", "label": "Mediano" },
+            { "value": "h0", "label": "Grande" }
+          ],
+          "default": "h1"
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alineación",
+          "options": [
+            { "value": "left", "label": "Izquierda" },
+            { "value": "center", "label": "Centro" },
+            { "value": "right", "label": "Derecha" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Color del título",
+          "default": "#4d0e13"
+        }
+      ]
     },
     {
       "type": "price",
       "name": "t:sections.main-product.blocks.price.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_badges",
+          "label": "Mostrar etiquetas de oferta",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_terms",
+          "label": "Mostrar opciones de pago a plazos",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alineación",
+          "options": [
+            { "value": "left", "label": "Izquierda" },
+            { "value": "center", "label": "Centro" },
+            { "value": "right", "label": "Derecha" }
+          ],
+          "default": "left"
+        }
+      ]
     },
     {
       "type": "sku",
@@ -1009,12 +1123,100 @@
     {
       "type": "description",
       "name": "t:sections.main-product.blocks.description.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "custom_description",
+          "label": "Descripción personalizada (opcional)",
+          "info": "Si lo dejas vacío, se usa la descripción guardada en el producto."
+        }
+      ]
     },
     {
       "type": "product_benefits",
       "name": "Beneficios de compra",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "accessibility_label",
+          "label": "Nombre accesible del grupo",
+          "default": "Beneficios de compra"
+        },
+        {
+          "type": "range",
+          "id": "columns",
+          "label": "Columnas en escritorio",
+          "min": 1,
+          "max": 3,
+          "step": 1,
+          "default": 3
+        },
+        {
+          "type": "header",
+          "content": "Beneficio 1"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_benefit_1",
+          "label": "Mostrar beneficio 1",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "benefit_1",
+          "label": "Texto",
+          "default": "Envío gratis"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_1",
+          "label": "Icono personalizado (opcional)"
+        },
+        {
+          "type": "header",
+          "content": "Beneficio 2"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_benefit_2",
+          "label": "Mostrar beneficio 2",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "benefit_2",
+          "label": "Texto",
+          "default": "Envío seguro"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_2",
+          "label": "Icono personalizado (opcional)"
+        },
+        {
+          "type": "header",
+          "content": "Beneficio 3"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_benefit_3",
+          "label": "Mostrar beneficio 3",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "benefit_3",
+          "label": "Texto",
+          "default": "Pago contra entrega"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_3",
+          "label": "Icono personalizado (opcional)"
+        }
+      ]
     },
     {
       "type": "share",
@@ -1315,6 +1517,23 @@
         {
           "type": "paragraph",
           "content": "t:sections.main-product.blocks.rating.settings.paragraph.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_count",
+          "label": "Mostrar cantidad de reseñas",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alineación",
+          "options": [
+            { "value": "left", "label": "Izquierda" },
+            { "value": "center", "label": "Centro" },
+            { "value": "right", "label": "Derecha" }
+          ],
+          "default": "left"
         }
       ]
     },
@@ -2352,6 +2571,51 @@
       ],
       "default": "lightbox",
       "label": "t:sections.main-product.settings.image_zoom.label"
+    },
+    {
+      "type": "header",
+      "content": "Galería personalizada"
+    },
+    {
+      "type": "select",
+      "id": "gallery_thumbnail_position",
+      "label": "Posición de miniaturas",
+      "options": [
+        { "value": "left", "label": "A la izquierda" },
+        { "value": "bottom", "label": "Debajo de la imagen" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "gallery_thumbnail_size",
+      "label": "Tamaño de miniaturas",
+      "min": 48,
+      "max": 120,
+      "step": 8,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "select",
+      "id": "gallery_image_ratio",
+      "label": "Proporción de imagen principal",
+      "options": [
+        { "value": "square", "label": "Cuadrada" },
+        { "value": "portrait", "label": "Vertical" },
+        { "value": "natural", "label": "Original" }
+      ],
+      "default": "square"
+    },
+    {
+      "type": "select",
+      "id": "gallery_image_fit",
+      "label": "Ajuste de imagen",
+      "options": [
+        { "value": "contain", "label": "Mostrar imagen completa" },
+        { "value": "cover", "label": "Llenar el espacio" }
+      ],
+      "default": "contain"
     },
     {
       "type": "checkbox",
