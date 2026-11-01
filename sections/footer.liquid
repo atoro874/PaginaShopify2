@@ -11,33 +11,60 @@
   }
 
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-top: 0;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  .footer.color-scheme-1 {
-    --color-background: 57, 16, 20;
-    --color-foreground: 238, 228, 218;
+  .footer.section-{{ section.id }}-padding {
+    --color-background: 74, 15, 20;
+    --color-foreground: 255, 255, 255;
     --color-button: 238, 228, 218;
-    --color-button-text: 57, 16, 20;
-    --color-secondary-button: 57, 16, 20;
-    --color-secondary-button-text: 238, 228, 218;
-    --gradient-background: #391014;
+    --color-button-text: 74, 15, 20;
+    --color-secondary-button: 74, 15, 20;
+    --color-secondary-button-text: 255, 255, 255;
+    --gradient-background: #4a0f14;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .footer.section-{{ section.id }}-padding .footer__content-top {
+    padding-top: calc(5rem + {{ section.settings.padding_top | times: 0.75 | round: 0 }}px);
   }
 
   @media screen and (min-width: 750px) {
-    .footer {
+    .footer.section-{{ section.id }}-padding {
       margin-top: {{ section.settings.margin_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
 
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+    .footer.section-{{ section.id }}-padding .footer__content-top {
+      padding-top: calc(5rem + {{ section.settings.padding_top }}px);
     }
   }
 {%- endstyle -%}
 
 <footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <svg
+    class="footer__wave"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 76"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <rect width="1440" height="76" fill="#eee4da" />
+    <path
+      fill="#d99aa2"
+      d="M0 42 C74 42 97 32 167 33 C245 34 266 50 342 48 C418 46 432 19 510 20 C582 21 603 42 680 42 C758 42 778 29 852 31 C931 33 954 48 1030 46 C1105 44 1125 19 1204 20 C1284 21 1305 40 1376 40 C1402 40 1421 37 1440 36 V76 H0 Z"
+    />
+    <path
+      fill="#bd7884"
+      d="M0 48 C75 48 99 39 170 40 C247 41 270 56 346 55 C422 54 438 29 514 30 C590 31 610 49 686 49 C763 49 786 37 860 39 C936 41 961 56 1037 54 C1113 52 1132 30 1208 31 C1284 32 1308 48 1379 48 C1404 48 1423 46 1440 44 V76 H0 Z"
+    />
+    <path
+      fill="#4a0f14"
+      d="M0 55 C75 55 102 46 173 47 C248 48 273 63 349 62 C425 61 441 39 517 40 C593 41 614 57 690 57 C766 57 789 47 863 48 C940 49 966 64 1041 62 C1117 60 1137 41 1213 42 C1289 43 1312 57 1382 57 C1407 57 1425 54 1440 52 V76 H0 Z"
+    />
+  </svg>
   {%- liquid
     assign has_social_icons = true
     if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
@@ -262,27 +289,7 @@
       data-cascade
     {% endif %}
   >
-    <svg
-      class="footer__wave"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1440 64"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <defs>
-        <linearGradient id="FooterWaveGradient-{{ section.id }}" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#67216f" />
-          <stop offset="52%" stop-color="#38215f" />
-          <stop offset="100%" stop-color="#174e73" />
-        </linearGradient>
-      </defs>
-      <path
-        fill="url(#FooterWaveGradient-{{ section.id }})"
-        d="M0 31 C40 53 80 55 120 32 S200 8 240 30 S320 54 360 31 S440 8 480 29 S560 52 600 32 S680 14 720 30 S800 52 840 31 S920 8 960 30 S1040 54 1080 32 S1160 10 1200 30 S1280 52 1320 31 S1400 10 1440 30 V64 H0 Z"
-      />
-    </svg>
-    <div class="footer__content-bottom-wrapper page-width">
+    <div class="footer__content-bottom-wrapper footer__brand-bar page-width">
       <div class="footer__column footer__localization isolate">
         {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
           <localization-form>
@@ -308,27 +315,10 @@
           </localization-form>
         {%- endif -%}
       </div>
-      <div class="footer__column footer__column--info">
-        {%- if section.settings.payment_enable -%}
-          <div class="footer__payment">
-            <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
-            <ul class="list list-payment" role="list">
-              {%- for type in shop.enabled_payment_types -%}
-                <li class="list-payment__item">
-                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-                </li>
-              {%- endfor -%}
-            </ul>
-          </div>
-        {%- endif -%}
-      </div>
-    </div>
-    <div class="footer__content-bottom-wrapper footer__brand-bar page-width">
       <div class="footer__copyright caption">
         <small class="copyright__content"
-          >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
+          >&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. Todos los derechos reservados.
         </small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
         {%- if section.settings.show_policy -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}
@@ -343,6 +333,48 @@
           </ul>
         {%- endif -%}
       </div>
+      {%- if section.settings.payment_enable -%}
+        <div class="footer__payment">
+          <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+          <ul class="list list-payment footer__payment-methods" role="list">
+            <li class="list-payment__item">
+              <span class="footer__payment-badge">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <rect x="1.5" y="3" width="13" height="10" rx="1.5" />
+                  <path d="M2 6h12M4 10h3" />
+                </svg>
+                Efectivo / Pago contra entrega (COD)
+              </span>
+            </li>
+            <li class="list-payment__item">
+              <span class="footer__payment-badge">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path d="m1.5 5 6.5-3 6.5 3M2.5 6h11M3.5 6v6m3-6v6m3-6v6m3-6v6M2 13h12" />
+                </svg>
+                Transferencias bancarias
+              </span>
+            </li>
+            <li class="list-payment__item">
+              <span class="footer__payment-badge">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <rect x="1.5" y="3" width="13" height="10" rx="1.5" />
+                  <path d="M2 6h12" />
+                </svg>
+                VISA
+              </span>
+            </li>
+            <li class="list-payment__item">
+              <span class="footer__payment-badge">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <rect x="1.5" y="3" width="13" height="10" rx="1.5" />
+                  <path d="M2 6h12" />
+                </svg>
+                Mastercard
+              </span>
+            </li>
+          </ul>
+        </div>
+      {%- endif -%}
       {%- if section.settings.show_social and has_social_icons -%}
         {%- render 'social-icons', class: 'footer__list-social' -%}
       {%- endif -%}
