@@ -204,20 +204,40 @@ product-info[id^='MainProduct-'] {
 }
 
 product-info[id^='MainProduct-'] .product-form__submit {
-  min-height: 3.5rem;
-  padding: 8.8px 12px;
-  border-color: #4d0e13;
-  border-radius: 0.5rem;
-  color: #eee4da;
-  background-color: #4d0e13;
+  display: flex;
+  min-height: 5.2rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1rem 2.4rem;
+  border: 0.2rem solid transparent;
+  border-radius: 999px;
+  color: #f7f5fa;
+  background:
+    linear-gradient(#15131a, #15131a) padding-box,
+    linear-gradient(110deg, #c8b3cf 0%, #7d78a7 54%, #0879a8 100%) border-box;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14.4px;
+  letter-spacing: 0.01em;
+  text-transform: none;
 }
 
 product-info[id^='MainProduct-'] .product-form__submit:hover,
 product-info[id^='MainProduct-'] .product-form__submit:focus-visible {
-  color: #eee4da;
-  background-color: #4d0e13;
+  color: #fff;
+  background:
+    linear-gradient(#201d26, #201d26) padding-box,
+    linear-gradient(110deg, #c8b3cf 0%, #7d78a7 54%, #0879a8 100%) border-box;
+}
+
+product-info[id^='MainProduct-'] .product-form__submit-icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  flex: 0 0 auto;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
 }
 
 product-info[id^='MainProduct-'] .product-benefits {
