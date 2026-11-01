@@ -18,7 +18,7 @@
           "type": "text",
           "settings": {
             "heading": "Nuestra tienda",
-            "subtext": "<p>Comprometidos con tu bienestar físico e íntimo. Entregamos soluciones efectivas con atención personalizada, despachos rápidos y privacidad absoluta.</p>"
+            "subtext": "<p>Comprometidos con tu bienestar. Entregamos soluciones efectivas con atención personalizada, despachos rápidos y privacidad absoluta.</p>"
           }
         }
       },
@@ -28,6 +28,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": false,
+        "newsletter_heading": "Suscribirse a nuestros correos electrónicos",
         "enable_follow_on_shop": false,
         "show_social": true,
         "enable_country_selector": false,
