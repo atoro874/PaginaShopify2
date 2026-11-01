@@ -456,7 +456,7 @@ product-info[id^='MainProduct-'] .product-benefits__icon img {
   padding-right: 2rem;
   padding-left: 2rem;
   background-color: var(--zz-reviews-background, #d8c4ac);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), var(--zz-reviews-image, none);
+  background-image: var(--zz-reviews-image, none);
   background-position: center;
   background-size: cover;
   border-radius: 0.8rem;
