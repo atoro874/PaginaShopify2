@@ -262,6 +262,26 @@
       data-cascade
     {% endif %}
   >
+    <svg
+      class="footer__wave"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 64"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <linearGradient id="FooterWaveGradient-{{ section.id }}" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#67216f" />
+          <stop offset="52%" stop-color="#38215f" />
+          <stop offset="100%" stop-color="#174e73" />
+        </linearGradient>
+      </defs>
+      <path
+        fill="url(#FooterWaveGradient-{{ section.id }})"
+        d="M0 31 C40 53 80 55 120 32 S200 8 240 30 S320 54 360 31 S440 8 480 29 S560 52 600 32 S680 14 720 30 S800 52 840 31 S920 8 960 30 S1040 54 1080 32 S1160 10 1200 30 S1280 52 1320 31 S1400 10 1440 30 V64 H0 Z"
+      />
+    </svg>
     <div class="footer__content-bottom-wrapper page-width">
       <div class="footer__column footer__localization isolate">
         {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
