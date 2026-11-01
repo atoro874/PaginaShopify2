@@ -40,7 +40,7 @@
     if (!trigger) return;
     event.preventDefault();
     openModal();
-  });
+  }, true);
 
   document.addEventListener('keydown', (event) => {
     if (state === 'closed') {

@@ -999,30 +999,17 @@
                 <div class="zz-related-products__group"{% if copy == 2 %} aria-hidden="true" inert{% endif %}>
                   {%- for block in related_product_blocks -%}
                     {%- assign related_product = block.settings.product -%}
-                    {%- assign related_link = block.settings.link -%}
                     {%- assign related_title = block.settings.title -%}
                     {%- if related_product != blank -%}
-                      {%- assign related_link = related_product.url -%}
                       {%- assign related_title = related_product.title -%}
                     {%- endif -%}
-                    {%- if related_link != blank -%}
-                      <a
-                        class="zz-related-product"
-                        href="{{ related_link }}"
-                        data-upcoming-trigger
-                        aria-haspopup="dialog"
-                        {% if copy == 1 %}{{ block.shopify_attributes }}{% endif %}
-                      >
-                    {%- else -%}
-                      <article
-                        class="zz-related-product"
-                        data-upcoming-trigger
-                        role="button"
-                        tabindex="0"
-                        aria-haspopup="dialog"
-                        {% if copy == 1 %}{{ block.shopify_attributes }}{% endif %}
-                      >
-                    {%- endif -%}
+                    <article
+                      class="zz-related-product"
+                      data-upcoming-trigger
+                      role="button"
+                      tabindex="0"
+                      {% if copy == 1 %}{{ block.shopify_attributes }}{% endif %}
+                    >
                       <div class="zz-related-product__image">
                         {%- if related_product != blank and related_product.featured_image != blank -%}
                           {{ related_product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: related_product.title }}
@@ -1040,11 +1027,7 @@
                       {%- elsif related_product != blank -%}
                         {%- render 'price', product: related_product -%}
                       {%- endif -%}
-                    {%- if related_link != blank -%}
-                      </a>
-                    {%- else -%}
-                      </article>
-                    {%- endif -%}
+                    </article>
                   {%- endfor -%}
                 </div>
               {%- endfor -%}
