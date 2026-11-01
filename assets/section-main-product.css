@@ -204,40 +204,34 @@ product-info[id^='MainProduct-'] {
 }
 
 product-info[id^='MainProduct-'] .product-form__submit {
-  display: flex;
-  min-height: 5.2rem;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  padding: 1rem 2.4rem;
-  border: 0.2rem solid transparent;
-  border-radius: 999px;
-  color: #f7f5fa;
-  background:
-    linear-gradient(#15131a, #15131a) padding-box,
-    linear-gradient(110deg, #c8b3cf 0%, #7d78a7 54%, #0879a8 100%) border-box;
+  display: inline-flex;
+  width: auto;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0.4rem 0;
+  border: 0;
+  border-radius: 0;
+  color: #777;
+  background: transparent;
+  box-shadow: none;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14.4px;
-  letter-spacing: 0.01em;
+  font-size: 1.2rem;
+  letter-spacing: 0.03em;
   text-transform: none;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
+product-info[id^='MainProduct-'] .product-form__submit::before,
+product-info[id^='MainProduct-'] .product-form__submit::after {
+  display: none;
 }
 
 product-info[id^='MainProduct-'] .product-form__submit:hover,
 product-info[id^='MainProduct-'] .product-form__submit:focus-visible {
-  color: #fff;
-  background:
-    linear-gradient(#201d26, #201d26) padding-box,
-    linear-gradient(110deg, #c8b3cf 0%, #7d78a7 54%, #0879a8 100%) border-box;
-}
-
-product-info[id^='MainProduct-'] .product-form__submit-icon {
-  width: 1.6rem;
-  height: 1.6rem;
-  flex: 0 0 auto;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.8;
+  color: #4d0e13;
+  background: transparent;
 }
 
 product-info[id^='MainProduct-'] .product-benefits {
