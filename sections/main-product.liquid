@@ -10,6 +10,7 @@
   data-product-id="{{ product.id }}"
   data-update-url="true"
   data-url="{{ product.url }}"
+  style="--zz-product-background: {{ section.settings.background_color }}; --zz-product-text: {{ section.settings.text_color }}; --zz-product-accent: {{ section.settings.accent_color }};"
   {% if section.settings.image_zoom == 'hover' %}
     data-zoom-on-hover
   {% endif %}
@@ -114,17 +115,21 @@
                     {{- block.settings.text -}}
                   </p>
                 {%- when 'title' -%}
+                  {%- assign product_display_title = section.settings.product_title | default: product.title -%}
                   <div
                     class="product__title"
-                    style="--product-title-color: {{ block.settings.title_color }}; text-align: {{ block.settings.alignment }};"
+                    style="text-align: {{ block.settings.alignment }};"
                     {{ block.shopify_attributes }}
                   >
+                    {%- if section.settings.badge_text != blank -%}
+                      <p class="zz-product-badge">{{ section.settings.badge_text | escape }}</p>
+                    {%- endif -%}
                     <h1 class="{{ block.settings.heading_size }}">
-                      {{- block.settings.custom_title | default: product.title | escape -}}
+                      {{- product_display_title | escape -}}
                     </h1>
                     <a href="{{ product.url }}" class="product__title">
                       <h2 class="{{ block.settings.heading_size }}">
-                        {{ block.settings.custom_title | default: product.title | escape }}
+                        {{ product_display_title | escape }}
                       </h2>
                     </a>
                   </div>
@@ -136,12 +141,26 @@
                     role="status"
                     {{ block.shopify_attributes }}
                   >
-                    {%- render 'price',
-                      product: product,
-                      use_variant: true,
-                      show_badges: block.settings.show_badges,
-                      price_class: 'price--large'
-                    -%}
+                    {%- if section.settings.price_text != blank -%}
+                      <div class="zz-product-price">
+                        <span>{{ section.settings.price_text | escape }}</span>
+                        {%- if section.settings.compare_price_text != blank -%}
+                          <s>{{ section.settings.compare_price_text | escape }}</s>
+                        {%- endif -%}
+                        {%- if section.settings.discount_label != blank -%}
+                          <span class="zz-product-price__badge">
+                            {{ section.settings.discount_label | escape }}
+                          </span>
+                        {%- endif -%}
+                      </div>
+                    {%- else -%}
+                      {%- render 'price',
+                        product: product,
+                        use_variant: true,
+                        show_badges: block.settings.show_badges,
+                        price_class: 'price--large'
+                      -%}
+                    {%- endif -%}
                   </div>
                   {%- if product.quantity_price_breaks_configured? -%}
                     <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
@@ -223,7 +242,7 @@
                     {%- endif -%}
                   </p>
                 {%- when 'description' -%}
-                  {%- assign product_description = block.settings.custom_description | default: product.description -%}
+                  {%- assign product_description = section.settings.introduction | default: product.description -%}
                   {%- if product_description != blank -%}
                     <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
                       {{ product_description }}
@@ -591,47 +610,27 @@
                     </ul>
                   {%- endif -%}
                 {%- when 'rating' -%}
-                  {%- if product.metafields.reviews.rating.value != blank -%}
+                  {%- if section.settings.rating_score > 0 -%}
                     <div
                       class="rating-wrapper"
                       style="text-align: {{ block.settings.alignment }};"
                       {{ block.shopify_attributes }}
                     >
-                      {% liquid
-                        assign rating_decimal = 0
-                        assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
-                        if decimal >= 0.3 and decimal <= 0.7
-                          assign rating_decimal = 0.5
-                        elsif decimal > 0.7
-                          assign rating_decimal = 1
-                        endif
-                      %}
                       <div
-                        class="rating"
+                        class="zz-product-rating"
                         role="img"
-                        aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: product.metafields.reviews.rating.value, rating_max: product.metafields.reviews.rating.value.scale_max }}"
+                        aria-label="Calificación {{ section.settings.rating_score }} de 5{% if section.settings.review_count != blank %}; {{ section.settings.review_count | escape }}{% endif %}"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="rating-star"
-                          style="--rating: {{ product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
-                        ></span>
-                      </div>
-                      <p class="rating-text caption">
-                        <span aria-hidden="true">
-                          {{- product.metafields.reviews.rating.value }} /
-                          {{ product.metafields.reviews.rating.value.scale_max -}}
+                        <span class="zz-product-rating__stars" aria-hidden="true">
+                          {%- for star in (1..5) -%}
+                            <span{% if star > section.settings.rating_score %} class="is-empty"{% endif %}>★</span>
+                          {%- endfor -%}
                         </span>
-                      </p>
-                      {%- if block.settings.show_count -%}
-                        <p class="rating-count caption">
-                          <span aria-hidden="true">({{ product.metafields.reviews.rating_count }})</span>
-                          <span class="visually-hidden">
-                            {{- product.metafields.reviews.rating_count }}
-                            {{ 'accessibility.total_reviews' | t -}}
-                          </span>
-                        </p>
-                      {%- endif -%}
+                        <span>{{ section.settings.rating_score }}/5</span>
+                        {%- if section.settings.review_count != blank and block.settings.show_count -%}
+                          <span>({{ section.settings.review_count | escape }})</span>
+                        {%- endif -%}
+                      </div>
                     </div>
                   {%- endif -%}
                 {%- when 'complementary' -%}
@@ -848,6 +847,150 @@
       <script type="application/ld+json">
         {{ product | structured_data }}
       </script>
+
+      {%- if section.settings.details_heading != blank or section.settings.details_content != blank or section.settings.materials_heading != blank or section.settings.materials_content != blank -%}
+        <section class="zz-product-content zz-product-details" aria-label="Detalles del producto">
+          {%- if section.settings.details_heading != blank or section.settings.details_content != blank -%}
+            <details class="zz-product-faq__item" open>
+              <summary>{{ section.settings.details_tab_label | escape }}</summary>
+              <div class="zz-product-details__panel">
+                <div class="rte">
+                  {%- if section.settings.details_heading != blank -%}
+                    <h2>{{ section.settings.details_heading | escape }}</h2>
+                  {%- endif -%}
+                  {{ section.settings.details_content }}
+                </div>
+                {%- if section.settings.details_image != blank -%}
+                  {{ section.settings.details_image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: section.settings.details_heading }}
+                {%- endif -%}
+              </div>
+            </details>
+          {%- endif -%}
+          {%- if section.settings.materials_heading != blank or section.settings.materials_content != blank -%}
+            <details class="zz-product-faq__item">
+              <summary>{{ section.settings.materials_tab_label | escape }}</summary>
+              <div class="zz-product-details__panel">
+                <div class="rte">
+                  {%- if section.settings.materials_heading != blank -%}
+                    <h2>{{ section.settings.materials_heading | escape }}</h2>
+                  {%- endif -%}
+                  {{ section.settings.materials_content }}
+                </div>
+                {%- if section.settings.materials_image != blank -%}
+                  {{ section.settings.materials_image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: section.settings.materials_heading }}
+                {%- endif -%}
+              </div>
+            </details>
+          {%- endif -%}
+        </section>
+      {%- endif -%}
+
+      {%- assign review_blocks = section.blocks | where: 'type', 'review' -%}
+      {%- if review_blocks.size > 0 -%}
+        <section
+          class="zz-product-content zz-product-reviews"
+          style="--zz-reviews-background: {{ section.settings.reviews_background }};{% if section.settings.reviews_image != blank %} --zz-reviews-image: url('{{ section.settings.reviews_image | image_url: width: 2400 }}');{% endif %}"
+          aria-labelledby="ReviewsHeading-{{ section.id }}"
+        >
+          <div class="zz-product-content__heading">
+            {%- if section.settings.reviews_eyebrow != blank -%}
+              <p class="zz-product-content__eyebrow">{{ section.settings.reviews_eyebrow | escape }}</p>
+            {%- endif -%}
+            <h2 id="ReviewsHeading-{{ section.id }}">{{ section.settings.reviews_heading | escape }}</h2>
+            {%- if section.settings.reviews_subheading != blank -%}
+              <p>{{ section.settings.reviews_subheading | escape }}</p>
+            {%- endif -%}
+          </div>
+          <div class="zz-product-reviews__grid">
+            {%- for block in review_blocks -%}
+              <article class="zz-product-review" {{ block.shopify_attributes }}>
+                <p class="zz-product-review__stars" aria-label="Calificación {{ block.settings.rating }} de 5">
+                  {%- for star in (1..5) -%}
+                    <span{% if star > block.settings.rating %} class="is-empty"{% endif %} aria-hidden="true">★</span>
+                  {%- endfor -%}
+                </p>
+                {%- if block.settings.quote != blank -%}
+                  <div class="rte">{{ block.settings.quote }}</div>
+                {%- endif -%}
+                {%- if block.settings.author != blank -%}
+                  <p class="zz-product-review__author">{{ block.settings.author | escape }}</p>
+                {%- endif -%}
+              </article>
+            {%- endfor -%}
+          </div>
+        </section>
+      {%- endif -%}
+
+      {%- assign faq_blocks = section.blocks | where: 'type', 'faq' -%}
+      {%- if faq_blocks.size > 0 -%}
+        <section
+          class="zz-product-content zz-product-faq"
+          style="--zz-faq-background: {{ section.settings.faq_background }};"
+          aria-labelledby="FaqHeading-{{ section.id }}"
+        >
+          <h2 id="FaqHeading-{{ section.id }}">{{ section.settings.faq_heading | escape }}</h2>
+          <div class="zz-product-faq__list">
+            {%- for block in faq_blocks -%}
+              <details class="zz-product-faq__item" {{ block.shopify_attributes }}>
+                <summary>{{ block.settings.question | escape }}</summary>
+                {%- if block.settings.answer != blank -%}
+                  <div class="zz-product-faq__answer rte">{{ block.settings.answer }}</div>
+                {%- endif -%}
+              </details>
+            {%- endfor -%}
+          </div>
+        </section>
+      {%- endif -%}
+
+      {%- assign related_product_blocks = section.blocks | where: 'type', 'related_product' -%}
+      {%- if section.settings.show_related_products and related_product_blocks.size > 0 -%}
+        <section class="zz-product-content zz-related-products" aria-labelledby="RelatedHeading-{{ section.id }}">
+          <div class="zz-product-content__heading zz-related-products__heading">
+            <h2 id="RelatedHeading-{{ section.id }}">{{ section.settings.related_heading | escape }}</h2>
+            {%- if section.settings.related_link != blank -%}
+              <a href="{{ section.settings.related_link }}">{{ section.settings.related_link_label | escape }}</a>
+            {%- endif -%}
+          </div>
+          <div class="zz-related-products__grid">
+            {%- for block in related_product_blocks -%}
+              {%- assign related_product = block.settings.product -%}
+              {%- assign related_link = block.settings.link -%}
+              {%- assign related_title = block.settings.title -%}
+              {%- if related_product != blank -%}
+                {%- assign related_link = related_product.url -%}
+                {%- assign related_title = related_product.title -%}
+              {%- endif -%}
+              {%- if related_link != blank -%}
+                <a class="zz-related-product" href="{{ related_link }}" {{ block.shopify_attributes }}>
+              {%- else -%}
+                <article class="zz-related-product" {{ block.shopify_attributes }}>
+              {%- endif -%}
+                <div class="zz-related-product__image">
+                  {%- if related_product != blank and related_product.featured_image != blank -%}
+                    {{ related_product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: related_product.title }}
+                  {%- elsif block.settings.image != blank -%}
+                    {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: related_title }}
+                  {%- else -%}
+                    {{ 'product-1' | placeholder_svg_tag }}
+                  {%- endif -%}
+                </div>
+                {%- if related_title != blank -%}
+                  <h3>{{ related_title | escape }}</h3>
+                {%- endif -%}
+                {%- if block.settings.price != blank -%}
+                  <p>{{ block.settings.price | escape }}</p>
+                {%- elsif related_product != blank -%}
+                  {%- render 'price', product: related_product -%}
+                {%- endif -%}
+              {%- if related_link != blank -%}
+                </a>
+              {%- else -%}
+                </article>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </section>
+      {%- endif -%}
     </div>
   </product-component>
 </product-info>
@@ -855,9 +998,10 @@
 
 {% schema %}
 {
-  "name": "t:sections.main-product.name",
+  "name": "Producto en inicio",
   "tag": "section",
   "class": "section",
+  "max_blocks": 50,
   "blocks": [
     {
       "type": "@app"
@@ -875,6 +1019,83 @@
           "type": "text",
           "id": "alt",
           "label": "Texto alternativo"
+        }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Comentario",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Calificación",
+          "default": 5
+        },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Comentario",
+          "default": "<p>Escribe el comentario del cliente.</p>"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Autor",
+          "default": "Nombre del cliente"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "Pregunta frecuente",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pregunta",
+          "default": "Escribe una pregunta frecuente."
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Respuesta",
+          "default": "<p>Escribe aquí la respuesta.</p>"
+        }
+      ]
+    },
+    {
+      "type": "related_product",
+      "name": "Producto relacionado",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Producto de la tienda"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen alternativa"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título alternativo",
+          "default": "Producto relacionado"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Precio alternativo"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace alternativo"
         }
       ]
     },
@@ -916,12 +1137,6 @@
       "limit": 1,
       "settings": [
         {
-          "type": "text",
-          "id": "custom_title",
-          "label": "Título personalizado (opcional)",
-          "info": "Si lo dejas vacío, se usa el título guardado en el producto."
-        },
-        {
           "type": "select",
           "id": "heading_size",
           "label": "Tamaño del título",
@@ -942,12 +1157,6 @@
             { "value": "right", "label": "Derecha" }
           ],
           "default": "left"
-        },
-        {
-          "type": "color",
-          "id": "title_color",
-          "label": "Color del título",
-          "default": "#4d0e13"
         }
       ]
     },
@@ -1123,15 +1332,7 @@
     {
       "type": "description",
       "name": "t:sections.main-product.blocks.description.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "custom_description",
-          "label": "Descripción personalizada (opcional)",
-          "info": "Si lo dejas vacío, se usa la descripción guardada en el producto."
-        }
-      ]
+      "limit": 1
     },
     {
       "type": "product_benefits",
@@ -2435,6 +2636,185 @@
   ],
   "settings": [
     {
+      "type": "header",
+      "content": "Diseño general"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fondo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texto",
+      "default": "#4d0e13"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Acento",
+      "default": "#e2c0bb"
+    },
+    {
+      "type": "header",
+      "content": "Contenido del producto"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Etiqueta del producto"
+    },
+    {
+      "type": "text",
+      "id": "product_title",
+      "label": "Título"
+    },
+    {
+      "type": "range",
+      "id": "rating_score",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "label": "Calificación",
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Cantidad de comentarios"
+    },
+    {
+      "type": "text",
+      "id": "price_text",
+      "label": "Precio",
+      "info": "Déjalo vacío para mostrar el precio actual de Shopify."
+    },
+    {
+      "type": "text",
+      "id": "compare_price_text",
+      "label": "Precio anterior"
+    },
+    {
+      "type": "text",
+      "id": "discount_label",
+      "label": "Etiqueta de descuento"
+    },
+    {
+      "type": "richtext",
+      "id": "introduction",
+      "label": "Descripción"
+    },
+    {
+      "type": "header",
+      "content": "Detalles del producto"
+    },
+    {
+      "type": "text",
+      "id": "details_tab_label",
+      "label": "Etiqueta de detalles",
+      "default": "Detalles"
+    },
+    {
+      "type": "text",
+      "id": "details_heading",
+      "label": "Título de detalles"
+    },
+    {
+      "type": "richtext",
+      "id": "details_content",
+      "label": "Texto de detalles"
+    },
+    {
+      "type": "image_picker",
+      "id": "details_image",
+      "label": "Imagen de detalles"
+    },
+    {
+      "type": "text",
+      "id": "materials_tab_label",
+      "label": "Etiqueta de información adicional",
+      "default": "Información adicional"
+    },
+    {
+      "type": "text",
+      "id": "materials_heading",
+      "label": "Título de información adicional"
+    },
+    {
+      "type": "richtext",
+      "id": "materials_content",
+      "label": "Texto de información adicional"
+    },
+    {
+      "type": "image_picker",
+      "id": "materials_image",
+      "label": "Imagen de información adicional"
+    },
+    {
+      "type": "text",
+      "id": "reviews_eyebrow",
+      "label": "Texto superior de comentarios"
+    },
+    {
+      "type": "text",
+      "id": "reviews_heading",
+      "label": "Título de comentarios",
+      "default": "Comentarios de clientes"
+    },
+    {
+      "type": "text",
+      "id": "reviews_subheading",
+      "label": "Subtítulo de comentarios"
+    },
+    {
+      "type": "color",
+      "id": "reviews_background",
+      "label": "Fondo de comentarios",
+      "default": "#d8c4ac"
+    },
+    {
+      "type": "image_picker",
+      "id": "reviews_image",
+      "label": "Imagen de fondo de comentarios"
+    },
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "Título de preguntas",
+      "default": "Preguntas frecuentes"
+    },
+    {
+      "type": "color",
+      "id": "faq_background",
+      "label": "Fondo de preguntas",
+      "default": "#eee4da"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_related_products",
+      "label": "Mostrar productos relacionados",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "related_heading",
+      "label": "Título de productos relacionados",
+      "default": "Productos relacionados"
+    },
+    {
+      "type": "url",
+      "id": "related_link",
+      "label": "Enlace para ver productos"
+    },
+    {
+      "type": "text",
+      "id": "related_link_label",
+      "label": "Texto del enlace",
+      "default": "Ver todos"
+    },
+    {
       "type": "checkbox",
       "id": "enable_sticky_info",
       "default": true,
@@ -2445,10 +2825,6 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.main-product.settings.header.content"
     },
     {
       "type": "select",
@@ -2573,10 +2949,6 @@
       "label": "t:sections.main-product.settings.image_zoom.label"
     },
     {
-      "type": "header",
-      "content": "Galería personalizada"
-    },
-    {
       "type": "select",
       "id": "gallery_thumbnail_position",
       "label": "Posición de miniaturas",
@@ -2628,10 +3000,6 @@
       "id": "enable_video_looping",
       "default": false,
       "label": "t:sections.main-product.settings.enable_video_looping.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
