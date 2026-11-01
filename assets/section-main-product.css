@@ -283,6 +283,44 @@ product-info[id^='MainProduct-'] .product-benefits__icon svg {
   }
 }
 
+@media screen and (min-width: 990px) {
+  .product--thumbnail .product__media-wrapper media-gallery {
+    display: grid;
+    grid-template-columns: 7.2rem minmax(0, 1fr);
+    align-items: start;
+    column-gap: 1.2rem;
+  }
+
+  .product--thumbnail .product__media-wrapper slider-component[id^='GalleryViewer-'] {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+  }
+
+  .product--thumbnail .product__media-wrapper slider-component[id^='GalleryThumbnails-'] {
+    grid-column: 1;
+    grid-row: 1;
+    max-height: 56rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .product--thumbnail .thumbnail-list {
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: auto;
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .product--thumbnail .thumbnail-list__item.slider__slide {
+    width: 100%;
+  }
+
+  .product--thumbnail .thumbnail-slider .slider-button {
+    display: none;
+  }
+}
+
 /* Overrides */
 .shopify-payment-button__more-options {
   color: rgb(var(--color-foreground));
