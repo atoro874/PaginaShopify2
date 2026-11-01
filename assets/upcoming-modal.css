@@ -25,88 +25,60 @@
   display: grid;
   place-items: center;
   padding: 2rem;
-  background: rgba(25, 10, 12, 0.28);
+  background: transparent;
   -webkit-backdrop-filter: blur(7px);
   backdrop-filter: blur(7px);
   opacity: 0;
+  pointer-events: none;
   transition:
-    opacity 0.8s ease,
-    backdrop-filter 0.8s ease,
-    -webkit-backdrop-filter 0.8s ease;
-}
-
-.upcoming-modal:not(.is-open) {
-  -webkit-backdrop-filter: blur(0);
-  backdrop-filter: blur(0);
-}
-
-.upcoming-modal.is-open {
-  opacity: 1;
+    opacity 0.5s ease,
+    backdrop-filter 0.5s ease,
+    -webkit-backdrop-filter 0.5s ease;
 }
 
 .upcoming-modal__panel {
-  position: relative;
-  display: grid;
-  min-width: min(32rem, 86vw);
-  min-height: 16rem;
-  place-items: center;
-  padding: 4rem 5rem;
-  border: 1px solid rgba(238, 228, 218, 0.65);
-  border-radius: 1.2rem;
-  background: rgba(74, 15, 20, 0.94);
-  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.25);
-  color: #fff;
+  padding: 2rem;
+  color: #000;
   opacity: 0;
-  transform: translateY(1rem) scale(0.97);
+  transform: scale(0.96);
   transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
+    opacity 0.5s ease,
+    transform 0.5s ease;
 }
 
 .upcoming-modal.is-open .upcoming-modal__panel {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: scale(1);
+}
+
+.upcoming-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.upcoming-modal.is-closing {
+  opacity: 0;
+  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
 }
 
 .upcoming-modal__title {
   margin: 0;
-  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-size: clamp(3.2rem, 9vw, 7.2rem);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-align: center;
-}
-
-.upcoming-modal__close {
-  position: absolute;
-  top: 0.8rem;
-  right: 0.8rem;
-  display: grid;
-  width: 4rem;
-  height: 4rem;
-  place-items: center;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
-  font: inherit;
-  font-size: 3rem;
-  line-height: 1;
-}
-
-.upcoming-modal__close:hover {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.upcoming-modal__close:focus-visible,
-.header__catalog-link:focus-visible,
-.zz-related-product[role='button']:focus-visible {
-  outline: 0.2rem solid currentColor;
-  outline-offset: 0.3rem;
+  white-space: nowrap;
 }
 
 .zz-related-product[role='button'] {
   cursor: pointer;
+}
+
+.header__catalog-link:focus-visible,
+.zz-related-product[role='button']:focus-visible {
+  outline: 0.2rem solid currentColor;
+  outline-offset: 0.3rem;
 }
 
 @media screen and (max-width: 380px) {

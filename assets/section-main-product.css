@@ -645,11 +645,6 @@ product-info[id^='MainProduct-'] .product-benefits__icon img {
   padding-right: 1.6rem;
 }
 
-.zz-related-products__grid:hover .zz-related-products__track,
-.zz-related-products__grid:focus-within .zz-related-products__track {
-  animation-play-state: paused;
-}
-
 @keyframes zz-related-products-marquee {
   to {
     transform: translateX(-50%);

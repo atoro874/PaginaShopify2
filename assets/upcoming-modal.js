@@ -2,44 +2,36 @@
   const modal = document.getElementById('UpcomingModal');
   if (!modal) return;
 
-  const panel = modal.querySelector('.upcoming-modal__panel');
-  const closeButton = modal.querySelector('.upcoming-modal__close');
-  const transitionDuration = 800;
+  const displayDuration = 2700;
+  const fadeDuration = 500;
   let state = 'closed';
-  let closeTimeout;
-  let previousFocus;
-  let previousBodyOverflow;
+  let displayTimeout;
+  let fadeTimeout;
 
   const openModal = () => {
-    if (state === 'open') return;
-    window.clearTimeout(closeTimeout);
+    if (state !== 'closed') return;
+    window.clearTimeout(displayTimeout);
+    window.clearTimeout(fadeTimeout);
     state = 'open';
-    previousFocus = document.activeElement;
-    if (modal.hidden) previousBodyOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
     modal.hidden = false;
     modal.setAttribute('aria-hidden', 'false');
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
         modal.classList.add('is-open');
-        closeButton.focus();
       });
     });
-  };
 
-  const closeModal = () => {
-    if (state !== 'open') return;
-    state = 'closing';
-    modal.classList.remove('is-open');
-    closeTimeout = window.setTimeout(() => {
-      state = 'closed';
-      modal.hidden = true;
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = previousBodyOverflow;
-      if (previousFocus instanceof HTMLElement && previousFocus.isConnected) {
-        previousFocus.focus();
-      }
-    }, transitionDuration);
+    displayTimeout = window.setTimeout(() => {
+      state = 'closing';
+      modal.classList.remove('is-open');
+      modal.classList.add('is-closing');
+      fadeTimeout = window.setTimeout(() => {
+        state = 'closed';
+        modal.hidden = true;
+        modal.setAttribute('aria-hidden', 'true');
+        modal.classList.remove('is-closing');
+      }, fadeDuration);
+    }, displayDuration);
   };
 
   document.addEventListener('click', (event) => {
@@ -60,21 +52,6 @@
         event.preventDefault();
         openModal();
       }
-      return;
-    }
-
-    if (event.key === 'Escape' && state === 'open') {
-      event.preventDefault();
-      closeModal();
-    } else if (event.key === 'Tab') {
-      event.preventDefault();
-      closeButton.focus();
     }
   });
-
-  closeButton.addEventListener('click', closeModal);
-  modal.addEventListener('click', (event) => {
-    if (event.target === modal) closeModal();
-  });
-  panel.addEventListener('click', (event) => event.stopPropagation());
 })();
