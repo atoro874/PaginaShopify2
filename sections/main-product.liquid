@@ -848,41 +848,58 @@
         {{ product | structured_data }}
       </script>
 
-      {%- if section.settings.details_heading != blank or section.settings.details_content != blank or section.settings.materials_heading != blank or section.settings.materials_content != blank -%}
-        <section class="zz-product-content zz-product-details" aria-label="Detalles del producto">
-          {%- if section.settings.details_heading != blank or section.settings.details_content != blank -%}
-            <details class="zz-product-faq__item" open>
-              <summary>{{ section.settings.details_tab_label | escape }}</summary>
-              <div class="zz-product-details__panel">
-                <div class="rte">
-                  {%- if section.settings.details_heading != blank -%}
-                    <h2>{{ section.settings.details_heading | escape }}</h2>
+      {%- assign product_module_blocks = section.blocks | where: 'type', 'product_module' -%}
+      {%- if product_module_blocks.size > 0 -%}
+        <section class="zz-product-content zz-product-modules" data-product-modules>
+          <div class="zz-product-modules__tabs" role="tablist" aria-label="Información del producto">
+            {%- for block in product_module_blocks -%}
+              <button
+                class="zz-product-modules__tab{% if forloop.first %} is-active{% endif %}"
+                id="ProductModuleTab-{{ block.id }}"
+                type="button"
+                role="tab"
+                aria-controls="ProductModulePanel-{{ block.id }}"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+                data-product-module-tab="{{ block.id }}"
+              >
+                {{ block.settings.tab_label | default: block.settings.heading | escape }}
+              </button>
+            {%- endfor -%}
+          </div>
+          <div class="zz-product-modules__panels">
+            {%- for block in product_module_blocks -%}
+              <article
+                class="zz-product-modules__panel{% if forloop.first %} is-active{% endif %}"
+                id="ProductModulePanel-{{ block.id }}"
+                role="tabpanel"
+                aria-labelledby="ProductModuleTab-{{ block.id }}"
+                aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
+                data-product-module-panel="{{ block.id }}"
+                data-image-position="{{ block.settings.image_position }}"
+                style="--zz-module-image-fit: {{ block.settings.image_fit }};"
+                {% unless forloop.first %}inert{% endunless %}
+                {{ block.shopify_attributes }}
+              >
+                <div class="zz-product-modules__copy rte">
+                  {%- if block.settings.heading != blank -%}
+                    <h2>{{ block.settings.heading | escape }}</h2>
                   {%- endif -%}
-                  {{ section.settings.details_content }}
+                  {{ block.settings.content }}
                 </div>
-                {%- if section.settings.details_image != blank -%}
-                  {{ section.settings.details_image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: section.settings.details_heading }}
-                {%- endif -%}
-              </div>
-            </details>
-          {%- endif -%}
-          {%- if section.settings.materials_heading != blank or section.settings.materials_content != blank -%}
-            <details class="zz-product-faq__item">
-              <summary>{{ section.settings.materials_tab_label | escape }}</summary>
-              <div class="zz-product-details__panel">
-                <div class="rte">
-                  {%- if section.settings.materials_heading != blank -%}
-                    <h2>{{ section.settings.materials_heading | escape }}</h2>
+                <div class="zz-product-modules__image">
+                  {%- if block.settings.image != blank -%}
+                    {%- assign module_image_alt = block.settings.image.alt | default: block.settings.heading -%}
+                    {{ block.settings.image | image_url: width: 1400 | image_tag: widths: '400, 600, 800, 1000, 1200, 1400', sizes: '(min-width: 750px) 50vw, 100vw', loading: 'lazy', alt: module_image_alt }}
+                  {%- else -%}
+                    {{ 'product-2' | placeholder_svg_tag }}
                   {%- endif -%}
-                  {{ section.settings.materials_content }}
                 </div>
-                {%- if section.settings.materials_image != blank -%}
-                  {{ section.settings.materials_image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: section.settings.materials_heading }}
-                {%- endif -%}
-              </div>
-            </details>
-          {%- endif -%}
+              </article>
+            {%- endfor -%}
+          </div>
         </section>
+        <script src="{{ 'product-info-tabs.js' | asset_url }}" defer="defer"></script>
       {%- endif -%}
 
       {%- assign review_blocks = section.blocks | where: 'type', 'review' -%}
@@ -1005,6 +1022,54 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "product_module",
+      "name": "Módulo de información",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "Nombre de la pestaña",
+          "default": "Módulo"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Información"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Posición de la imagen",
+          "options": [
+            { "value": "right", "label": "A la derecha" },
+            { "value": "left", "label": "A la izquierda" }
+          ],
+          "default": "right"
+        },
+        {
+          "type": "select",
+          "id": "image_fit",
+          "label": "Ajuste de imagen",
+          "options": [
+            { "value": "contain", "label": "Mostrar imagen completa" },
+            { "value": "cover", "label": "Llenar el espacio" }
+          ],
+          "default": "cover"
+        }
+      ]
     },
     {
       "type": "gallery_image",
@@ -2705,52 +2770,6 @@
       "type": "richtext",
       "id": "introduction",
       "label": "Descripción"
-    },
-    {
-      "type": "header",
-      "content": "Detalles del producto"
-    },
-    {
-      "type": "text",
-      "id": "details_tab_label",
-      "label": "Etiqueta de detalles",
-      "default": "Detalles"
-    },
-    {
-      "type": "text",
-      "id": "details_heading",
-      "label": "Título de detalles"
-    },
-    {
-      "type": "richtext",
-      "id": "details_content",
-      "label": "Texto de detalles"
-    },
-    {
-      "type": "image_picker",
-      "id": "details_image",
-      "label": "Imagen de detalles"
-    },
-    {
-      "type": "text",
-      "id": "materials_tab_label",
-      "label": "Etiqueta de información adicional",
-      "default": "Información adicional"
-    },
-    {
-      "type": "text",
-      "id": "materials_heading",
-      "label": "Título de información adicional"
-    },
-    {
-      "type": "richtext",
-      "id": "materials_content",
-      "label": "Texto de información adicional"
-    },
-    {
-      "type": "image_picker",
-      "id": "materials_image",
-      "label": "Imagen de información adicional"
     },
     {
       "type": "text",

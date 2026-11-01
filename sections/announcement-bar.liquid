@@ -25,7 +25,92 @@
     {%- if section.settings.show_social and social_icons -%}
       {%- render 'social-icons' -%}
     {%- endif -%}
-    {%- if section.blocks.size == 1 -%}
+    {%- if section.settings.enable_marquee and section.blocks.size > 0 -%}
+      <div
+        class="zz-announcement-marquee"
+        style="--zz-marquee-duration: {{ section.settings.marquee_speed }}s; --zz-marquee-direction: {% if section.settings.marquee_direction == 'right' %}reverse{% else %}normal{% endif %};"
+        role="region"
+        aria-label="{{ 'sections.header.announcement' | t }}"
+      >
+        {%- for block in section.blocks -%}
+          <span class="visually-hidden">
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}">{{ block.settings.text | escape }}</a>
+            {%- else -%}
+              {{- block.settings.text | escape -}}
+            {%- endif -%}
+          </span>
+        {%- endfor -%}
+        <div class="zz-announcement-marquee__track" aria-hidden="true">
+          {%- for group in (1..2) -%}
+            <div class="zz-announcement-marquee__group">
+              {%- for block in section.blocks -%}
+                {%- for repetition in (1..4) -%}
+                  {%- if block.settings.text != blank -%}
+                    <span
+                      class="zz-announcement-marquee__item"
+                      {% if group == 1 and repetition == 1 %}{{ block.shopify_attributes }}{% endif %}
+                    >
+                      {%- if block.settings.link != blank -%}
+                        <a href="{{ block.settings.link }}">{{ block.settings.text | escape }}</a>
+                      {%- else -%}
+                        {{- block.settings.text | escape -}}
+                      {%- endif -%}
+                    </span>
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endfor -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+      <style>
+        #shopify-section-{{ section.id }} .zz-announcement-marquee {
+          width: 100%;
+          overflow: hidden;
+        }
+
+        #shopify-section-{{ section.id }} .zz-announcement-marquee__track {
+          display: flex;
+          width: max-content;
+          animation: zz-announcement-marquee-{{ section.id }} var(--zz-marquee-duration) linear infinite;
+          animation-direction: var(--zz-marquee-direction);
+        }
+
+        #shopify-section-{{ section.id }} .zz-announcement-marquee__group {
+          box-sizing: border-box;
+          display: flex;
+          flex: 0 0 auto;
+          align-items: center;
+          justify-content: space-around;
+          gap: clamp(4rem, 8vw, 12rem);
+          min-width: 100vw;
+          padding: 0 clamp(2rem, 4vw, 6rem);
+        }
+
+        #shopify-section-{{ section.id }} .zz-announcement-marquee__item,
+        #shopify-section-{{ section.id }} .zz-announcement-marquee__item a {
+          color: inherit;
+          font-size: 1rem;
+          font-weight: 700;
+          letter-spacing: 0.04em;
+          text-decoration: none;
+          white-space: nowrap;
+        }
+
+        @keyframes zz-announcement-marquee-{{ section.id }} {
+          to {
+            transform: translateX(-50%);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          #shopify-section-{{ section.id }} .zz-announcement-marquee__track {
+            animation: none;
+          }
+        }
+      </style>
+    {%- elsif section.blocks.size == 1 -%}
       <div
         class="announcement-bar{% if section.settings.show_social %} announcement-bar--one-announcement{% endif %}"
         role="region"
@@ -171,6 +256,32 @@
     "groups": ["header"]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_marquee",
+      "label": "Desplazar el anuncio continuamente",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed",
+      "label": "Velocidad del desplazamiento",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "s",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "marquee_direction",
+      "label": "Dirección del desplazamiento",
+      "options": [
+        { "value": "left", "label": "De derecha a izquierda" },
+        { "value": "right", "label": "De izquierda a derecha" }
+      ],
+      "default": "left"
+    },
     {
       "type": "checkbox",
       "id": "auto_rotate",

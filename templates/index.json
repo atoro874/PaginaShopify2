@@ -102,6 +102,28 @@
             "benefit_3": "PAGO CONTRA ENTREGA"
           }
         },
+        "module-mero-macho": {
+          "type": "product_module",
+          "settings": {
+            "tab_label": "Mero Macho",
+            "heading": "🍎 MERO MACHO – Barras de gelatina eróticas",
+            "content": "<p>🔥 Fórmula de apoyo al deseo y rendimiento masculino<br>⚡ Componentes energizantes<br>🌱 Semillas de chía<br>🍎 Sabor manzana</p><p>Consumir la porción indicada en la etiqueta antes de la actividad. No exceder la cantidad recomendada.</p>",
+            "image": "shopify://shop_images/sa.jpg",
+            "image_position": "right",
+            "image_fit": "cover"
+          }
+        },
+        "module-crece-miembro": {
+          "type": "product_module",
+          "settings": {
+            "tab_label": "CRECE MIEMBRO",
+            "heading": "🖤 CRECE MIEMBRO – Gel masculino",
+            "content": "<p>Gel de uso externo. Aplicar una pequeña cantidad sobre la piel limpia y seguir las indicaciones del empaque. Evitar el contacto con ojos, mucosas, heridas o piel irritada.</p>",
+            "image": "shopify://shop_images/Gemini_Generated_Image_udel1hudel1hudel.jpg",
+            "image_position": "right",
+            "image_fit": "cover"
+          }
+        },
         "faq-1": {
           "type": "faq",
           "settings": {
@@ -183,6 +205,8 @@
         "description",
         "buy_buttons",
         "product_benefits",
+        "module-mero-macho",
+        "module-crece-miembro",
         "faq-1",
         "faq-2",
         "faq-3",
@@ -203,14 +227,6 @@
         "compare_price_text": "$120.900 COP",
         "discount_label": "🔥Últimas unidades",
         "introduction": "<p>Una combinación diseñada para hombres que quieren complementar sus momentos íntimos con energía, <strong>confianza y una experiencia más intensa</strong>.</p>",
-        "details_tab_label": "Mero Macho",
-        "details_heading": "🍎 MERO MACHO – Barras de gelatina eróticas",
-        "details_content": "<p>🔥 Fórmula de apoyo al deseo y rendimiento masculino<br>⚡ Componentes energizantes<br>🌱 Semillas de chía<br>🍎 Sabor manzana</p><p>Consumir la porción indicada en la etiqueta antes de la actividad. No exceder la cantidad recomendada.</p>",
-        "details_image": "shopify://shop_images/sa.jpg",
-        "materials_tab_label": "Crece Miembro",
-        "materials_heading": "🖤 CRECE MIEMBRO – Gel masculino",
-        "materials_content": "<p>Gel de uso externo. Aplicar una pequeña cantidad sobre la piel limpia y seguir las indicaciones del empaque. Evitar el contacto con ojos, mucosas, heridas o piel irritada.</p>",
-        "materials_image": "shopify://shop_images/Gemini_Generated_Image_udel1hudel1hudel.jpg",
         "reviews_eyebrow": "",
         "reviews_heading": "Reseñas de la comunidad",
         "reviews_subheading": "Lee las experiencias de nuestros clientes.",

@@ -17,6 +17,9 @@
         "announcement-bar-0"
       ],
       "settings": {
+        "enable_marquee": true,
+        "marquee_speed": 16,
+        "marquee_direction": "left",
         "auto_rotate": false,
         "change_slides_speed": 5,
         "color_scheme": "scheme-1",
