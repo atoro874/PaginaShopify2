@@ -203,6 +203,36 @@
             "price": "",
             "link": ""
           }
+        },
+        "related_product_PUzUg4": {
+          "type": "related_product",
+          "settings": {
+            "product": "",
+            "image": "shopify://shop_images/wqw.jpg",
+            "title": "PROXIMAMENTE",
+            "price": "",
+            "link": ""
+          }
+        },
+        "related_product_zzU6BF": {
+          "type": "related_product",
+          "settings": {
+            "product": "",
+            "image": "shopify://shop_images/2_ed21742b-668d-4259-8b3e-d0c8827e982a.jpg",
+            "title": "PROXIMAMENTE",
+            "price": "",
+            "link": ""
+          }
+        },
+        "related_product_9jaLfJ": {
+          "type": "related_product",
+          "settings": {
+            "product": "",
+            "image": "shopify://shop_images/3.jpg",
+            "title": "PROXIMAMENTE",
+            "price": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
@@ -229,7 +259,10 @@
         "faq-5",
         "related-1",
         "related-2",
-        "related-3"
+        "related-3",
+        "related_product_PUzUg4",
+        "related_product_zzU6BF",
+        "related_product_9jaLfJ"
       ],
       "settings": {
         "background_color": "#ffffff",
