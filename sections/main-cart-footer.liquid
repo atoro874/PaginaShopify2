@@ -104,9 +104,29 @@
                 </small>
               </div>
             {%- else -%}
-              <div hidden {{ block.shopify_attributes }}>
-                {% comment %}Checkout is intentionally disabled while the store uses cash on delivery.{% endcomment %}
-              </div>
+              {% comment %}
+                Checkout is intentionally disabled while the store uses cash on delivery.
+                Uncomment this block to restore checkout:
+                <div class="cart__ctas" {{ block.shopify_attributes }}>
+                  <button
+                    type="submit"
+                    id="checkout"
+                    class="cart__checkout-button button"
+                    name="checkout"
+                    {% if cart == empty %}
+                      disabled
+                    {% endif %}
+                    form="cart"
+                  >
+                    {{ 'sections.cart.checkout' | t }}
+                  </button>
+                </div>
+                {%- if additional_checkout_buttons -%}
+                  <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+                    {{ content_for_additional_checkout_buttons }}
+                  </div>
+                {%- endif -%}
+              {% endcomment %}
 
           {%- endcase -%}
         {% endfor %}

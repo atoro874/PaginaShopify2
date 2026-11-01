@@ -564,9 +564,24 @@
 
         <!-- CTAs -->
 
-        <div hidden {{ block.shopify_attributes }}>
-          {% comment %}Checkout is intentionally disabled while the store uses cash on delivery.{% endcomment %}
-        </div>
+        {% comment %}
+          Checkout is intentionally disabled while the store uses cash on delivery.
+          Uncomment this block to restore checkout:
+          <div class="cart__ctas" {{ block.shopify_attributes }}>
+            <button
+              type="submit"
+              id="CartDrawer-Checkout"
+              class="cart__checkout-button button"
+              name="checkout"
+              form="CartDrawer-Form"
+              {% if cart == empty %}
+                disabled
+              {% endif %}
+            >
+              {{ 'sections.cart.checkout' | t }}
+            </button>
+          </div>
+        {% endcomment %}
       </div>
     </div>
   </div>

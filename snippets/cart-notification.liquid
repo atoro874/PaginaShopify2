@@ -42,6 +42,15 @@
         >
           {{- 'general.cart.view_empty_cart' | t -}}
         </a>
+        {% comment %}
+          Checkout is intentionally disabled while the store uses cash on delivery.
+          Uncomment this form to restore checkout:
+          <form action="{{ routes.cart_url }}" method="post" id="cart-notification-form">
+            <button class="button button--primary button--full-width" name="checkout">
+              {{ 'sections.cart.checkout' | t }}
+            </button>
+          </form>
+        {% endcomment %}
         <button type="button" class="link button-label">{{ 'general.continue_shopping' | t }}</button>
       </div>
     </div>

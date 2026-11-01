@@ -7,15 +7,6 @@
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
 
-    {%- if request.page_type == 'index' and request.design_mode == false -%}
-      {%- assign homepage_product = collections.all.products.first -%}
-      {%- if homepage_product != blank -%}
-        <script>
-          window.location.replace({{ homepage_product.url | json }});
-        </script>
-      {%- endif -%}
-    {%- endif -%}
-
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
