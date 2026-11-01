@@ -7,6 +7,7 @@
     const dialog = gallery.querySelector('[data-zz-gallery-dialog]');
     const dialogImage = gallery.querySelector('[data-zz-gallery-dialog-image]');
     const counter = gallery.querySelector('[data-zz-gallery-counter]');
+    const hideTimers = new WeakMap();
 
     if (images.length === 0) return;
     gallery.dataset.initialized = 'true';
@@ -14,13 +15,28 @@
     let activeIndex = 0;
 
     const showImage = (index) => {
-      activeIndex = (index + images.length) % images.length;
+      const nextIndex = (index + images.length) % images.length;
+      if (nextIndex === activeIndex) return;
 
-      images.forEach((image, imageIndex) => {
-        const isActive = imageIndex === activeIndex;
-        image.hidden = !isActive;
-        image.setAttribute('aria-hidden', String(!isActive));
-      });
+      const previousImage = images[activeIndex];
+      const nextImage = images[nextIndex];
+      const pendingHide = hideTimers.get(nextImage);
+      if (pendingHide) window.clearTimeout(pendingHide);
+
+      nextImage.hidden = false;
+      nextImage.setAttribute('aria-hidden', 'false');
+      nextImage.getBoundingClientRect();
+      nextImage.classList.add('is-active');
+      previousImage.classList.remove('is-active');
+      previousImage.setAttribute('aria-hidden', 'true');
+      const hideTimer = window.setTimeout(() => {
+        if (!previousImage.classList.contains('is-active')) {
+          previousImage.hidden = true;
+        }
+        hideTimers.delete(previousImage);
+      }, 500);
+      hideTimers.set(previousImage, hideTimer);
+      activeIndex = nextIndex;
 
       thumbnails.forEach((thumbnail, thumbnailIndex) => {
         const isActive = thumbnailIndex === activeIndex;

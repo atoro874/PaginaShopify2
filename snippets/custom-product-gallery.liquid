@@ -6,11 +6,13 @@
   {%- endif -%}
 {%- endfor -%}
 {%- assign gallery_image_ratio = '1 / 1' -%}
+{%- assign first_gallery_image_block = gallery_blocks | first -%}
+{%- assign first_gallery_image = first_gallery_image_block.settings.image | default: product.featured_image -%}
 {%- case section.settings.gallery_image_ratio -%}
   {%- when 'portrait' -%}
     {%- assign gallery_image_ratio = '4 / 5' -%}
   {%- when 'natural' -%}
-    {%- assign gallery_image_ratio = 'auto' -%}
+    {%- assign gallery_image_ratio = first_gallery_image.aspect_ratio | default: 1 -%}
 {%- endcase -%}
 
 <div
@@ -64,7 +66,7 @@
         {%- if block.settings.image != blank -%}
           {%- assign image_alt = block.settings.alt | default: block.settings.image.alt | default: product.title -%}
           <div
-            class="zz-product-gallery__image"
+            class="zz-product-gallery__image{% if rendered_image_count == 0 %} is-active{% endif %}"
             data-zz-gallery-image="{{ rendered_image_count }}"
             {% if rendered_image_count > 0 %}hidden aria-hidden="true"{% else %}aria-hidden="false"{% endif %}
           >
@@ -93,7 +95,7 @@
       {%- for image in product.images -%}
         {%- assign image_alt = image.alt | default: product.title -%}
         <div
-          class="zz-product-gallery__image"
+          class="zz-product-gallery__image{% if forloop.first %} is-active{% endif %}"
           data-zz-gallery-image="{{ forloop.index0 }}"
           {% unless forloop.first %}hidden aria-hidden="true"{% else %}aria-hidden="false"{% endunless %}
         >

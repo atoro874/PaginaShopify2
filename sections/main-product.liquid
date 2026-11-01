@@ -918,22 +918,38 @@
               <p>{{ section.settings.reviews_subheading | escape }}</p>
             {%- endif -%}
           </div>
-          <div class="zz-product-reviews__grid">
-            {%- for block in review_blocks -%}
-              <article class="zz-product-review" {{ block.shopify_attributes }}>
-                <p class="zz-product-review__stars" aria-label="Calificación {{ block.settings.rating }} de 5">
-                  {%- for star in (1..5) -%}
-                    <span{% if star > block.settings.rating %} class="is-empty"{% endif %} aria-hidden="true">★</span>
-                  {%- endfor -%}
-                </p>
-                {%- if block.settings.quote != blank -%}
-                  <div class="rte">{{ block.settings.quote }}</div>
-                {%- endif -%}
-                {%- if block.settings.author != blank -%}
-                  <p class="zz-product-review__author">{{ block.settings.author | escape }}</p>
-                {%- endif -%}
-              </article>
-            {%- endfor -%}
+          <div class="zz-product-reviews__carousel" data-product-reviews>
+            <div
+              class="zz-product-reviews__grid"
+              data-product-reviews-track
+              role="region"
+              aria-label="Comentarios de clientes"
+              tabindex="0"
+            >
+              {%- for block in review_blocks -%}
+                <article class="zz-product-review" {{ block.shopify_attributes }}>
+                  <p class="zz-product-review__stars" aria-label="Calificación {{ block.settings.rating }} de 5">
+                    {%- for star in (1..5) -%}
+                      <span{% if star > block.settings.rating %} class="is-empty"{% endif %} aria-hidden="true">★</span>
+                    {%- endfor -%}
+                  </p>
+                  {%- if block.settings.quote != blank -%}
+                    <div class="rte">{{ block.settings.quote }}</div>
+                  {%- endif -%}
+                  {%- if block.settings.author != blank -%}
+                    <p class="zz-product-review__author">{{ block.settings.author | escape }}</p>
+                  {%- endif -%}
+                </article>
+              {%- endfor -%}
+            </div>
+            <div class="zz-product-reviews__controls" role="group" aria-label="Navegación de comentarios">
+              <button type="button" data-product-reviews-previous aria-label="Comentarios anteriores">
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </button>
+              <button type="button" data-product-reviews-next aria-label="Comentarios siguientes">
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </button>
+            </div>
           </div>
         </section>
       {%- endif -%}
@@ -951,12 +967,17 @@
               <details class="zz-product-faq__item" {{ block.shopify_attributes }}>
                 <summary>{{ block.settings.question | escape }}</summary>
                 {%- if block.settings.answer != blank -%}
-                  <div class="zz-product-faq__answer rte">{{ block.settings.answer }}</div>
+                  <div class="zz-product-faq__answer-wrapper">
+                    <div class="zz-product-faq__answer rte">{{ block.settings.answer }}</div>
+                  </div>
                 {%- endif -%}
               </details>
             {%- endfor -%}
           </div>
         </section>
+      {%- endif -%}
+      {%- if review_blocks.size > 0 or faq_blocks.size > 0 -%}
+        <script src="{{ 'product-content.js' | asset_url }}" defer="defer"></script>
       {%- endif -%}
 
       {%- assign related_product_blocks = section.blocks | where: 'type', 'related_product' -%}
