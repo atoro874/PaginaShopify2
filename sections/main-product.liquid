@@ -78,11 +78,22 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
+  {%- assign gallery_blocks = section.blocks | where: 'type', 'gallery_image' -%}
+  {%- assign gallery_image_count = 0 -%}
+  {%- for block in gallery_blocks -%}
+    {%- if block.settings.image != blank -%}
+      {%- assign gallery_image_count = gallery_image_count | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
   <product-component view-event-payload="{{ product | standard_event_data: 'view', context: 'page' | escape }}">
     <div class="page-width">
-      <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+      <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 or gallery_image_count > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
         <div class="grid__item product__media-wrapper">
-          {% render 'product-media-gallery', variant_images: variant_images %}
+          {%- if gallery_image_count > 0 -%}
+            {% render 'custom-product-gallery', product: product, section: section %}
+          {%- else -%}
+            {% render 'product-media-gallery', variant_images: variant_images %}
+          {%- endif -%}
         </div>
         <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           <section
@@ -731,7 +742,9 @@
         </div>
       </div>
 
-      {% render 'product-media-modal', variant_images: variant_images %}
+      {%- if gallery_image_count == 0 -%}
+        {% render 'product-media-modal', variant_images: variant_images %}
+      {%- endif -%}
 
       {% assign popups = section.blocks | where: 'type', 'popup' %}
       {%- for block in popups -%}
@@ -759,7 +772,7 @@
         </modal-dialog>
       {%- endfor -%}
 
-      {%- if product.media.size > 0 -%}
+      {%- if product.media.size > 0 and gallery_image_count == 0 -%}
         <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
         <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
       {%- endif -%}
@@ -795,6 +808,22 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "gallery_image",
+      "name": "Imagen de galería",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Texto alternativo"
+        }
+      ]
     },
     {
       "type": "text",

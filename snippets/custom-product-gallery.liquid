@@ -1,0 +1,127 @@
+{%- assign gallery_blocks = section.blocks | where: 'type', 'gallery_image' -%}
+{%- assign gallery_image_count = 0 -%}
+{%- for block in gallery_blocks -%}
+  {%- if block.settings.image != blank -%}
+    {%- assign gallery_image_count = gallery_image_count | plus: 1 -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<div class="zz-product-gallery" data-zz-product-gallery>
+  <div class="zz-product-gallery__thumbnails" role="group" aria-label="Imágenes del producto">
+    {%- if gallery_image_count > 0 -%}
+      {%- assign rendered_image_count = 0 -%}
+      {%- for block in gallery_blocks -%}
+        {%- if block.settings.image != blank -%}
+          {%- assign image_alt = block.settings.alt | default: block.settings.image.alt | default: product.title -%}
+          <button
+            class="zz-product-gallery__thumbnail{% if rendered_image_count == 0 %} is-selected{% endif %}"
+            type="button"
+            data-zz-gallery-thumbnail="{{ rendered_image_count }}"
+            aria-label="Ver imagen {{ rendered_image_count | plus: 1 }} de {{ gallery_image_count }}"
+            aria-pressed="{% if rendered_image_count == 0 %}true{% else %}false{% endif %}"
+          >
+            {{
+              block.settings.image
+              | image_url: width: 180
+              | image_tag: loading: 'lazy', alt: image_alt
+            }}
+          </button>
+          {%- assign rendered_image_count = rendered_image_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for image in product.images -%}
+        {%- assign image_alt = image.alt | default: product.title -%}
+        <button
+          class="zz-product-gallery__thumbnail{% if forloop.first %} is-selected{% endif %}"
+          type="button"
+          data-zz-gallery-thumbnail="{{ forloop.index0 }}"
+          aria-label="Ver imagen {{ forloop.index }} de {{ product.images.size }}"
+          aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+        >
+          {{ image | image_url: width: 180 | image_tag: loading: 'lazy', alt: image_alt }}
+        </button>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+  <div class="zz-product-gallery__stage">
+    {%- if gallery_image_count > 0 -%}
+      {%- assign rendered_image_count = 0 -%}
+      {%- for block in gallery_blocks -%}
+        {%- if block.settings.image != blank -%}
+          {%- assign image_alt = block.settings.alt | default: block.settings.image.alt | default: product.title -%}
+          <div
+            class="zz-product-gallery__image"
+            data-zz-gallery-image="{{ rendered_image_count }}"
+            {% if rendered_image_count > 0 %}hidden aria-hidden="true"{% else %}aria-hidden="false"{% endif %}
+          >
+            {{
+              block.settings.image
+              | image_url: width: 1600
+              | image_tag:
+                widths: '500, 750, 1000, 1300, 1600',
+                sizes: '(min-width: 990px) 48vw, 100vw',
+                loading: 'lazy',
+                alt: image_alt
+            }}
+            <button
+              class="zz-product-gallery__zoom"
+              type="button"
+              data-zz-gallery-open
+              aria-label="Ampliar imagen {{ rendered_image_count | plus: 1 }}"
+              data-full-src="{{ block.settings.image | image_url: width: 2400 }}"
+              data-full-alt="{{ image_alt | escape }}"
+            ></button>
+          </div>
+          {%- assign rendered_image_count = rendered_image_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for image in product.images -%}
+        {%- assign image_alt = image.alt | default: product.title -%}
+        <div
+          class="zz-product-gallery__image"
+          data-zz-gallery-image="{{ forloop.index0 }}"
+          {% unless forloop.first %}hidden aria-hidden="true"{% else %}aria-hidden="false"{% endunless %}
+        >
+          {{
+            image
+            | image_url: width: 1600
+            | image_tag:
+              widths: '500, 750, 1000, 1300, 1600',
+              sizes: '(min-width: 990px) 48vw, 100vw',
+              loading: 'lazy',
+              alt: image_alt
+          }}
+          <button
+            class="zz-product-gallery__zoom"
+            type="button"
+            data-zz-gallery-open
+            aria-label="Ampliar imagen {{ forloop.index }}"
+            data-full-src="{{ image | image_url: width: 2400 }}"
+            data-full-alt="{{ image_alt | escape }}"
+          ></button>
+        </div>
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'zz-product-gallery__placeholder' }}
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+  <dialog class="zz-product-gallery__dialog" data-zz-gallery-dialog aria-label="Imagen ampliada del producto">
+    <button class="zz-product-gallery__close" type="button" data-zz-gallery-close aria-label="Cerrar imagen ampliada">
+      {{- 'icon-close.svg' | inline_asset_content -}}
+    </button>
+    <button class="zz-product-gallery__navigation" type="button" data-zz-gallery-previous aria-label="Imagen anterior">
+      {{- 'icon-caret.svg' | inline_asset_content -}}
+    </button>
+    <img data-zz-gallery-dialog-image alt="">
+    <button class="zz-product-gallery__navigation zz-product-gallery__navigation--next" type="button" data-zz-gallery-next aria-label="Imagen siguiente">
+      {{- 'icon-caret.svg' | inline_asset_content -}}
+    </button>
+    <p class="zz-product-gallery__counter" data-zz-gallery-counter aria-live="polite"></p>
+  </dialog>
+</div>
+
+<script src="{{ 'custom-product-gallery.js' | asset_url }}" defer="defer"></script>
