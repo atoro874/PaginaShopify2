@@ -1,3 +1,8 @@
+{%- if product == blank and request.page_type == 'index' -%}
+  {%- assign product = collections.all.products.first -%}
+{%- endif -%}
+
+{%- if product != blank -%}
 <product-info
   id="MainProduct-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
@@ -780,6 +785,7 @@
     </div>
   </product-component>
 </product-info>
+{%- endif -%}
 
 {% schema %}
 {
