@@ -71,6 +71,12 @@ product-info[id^='MainProduct-'] {
 }
 
 @media screen and (min-width: 990px) {
+  product-info[id^='MainProduct-'] > .page-width {
+    max-width: 144rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+
   .product--large:not(.product--no-media) .product__media-wrapper {
     max-width: 65%;
     width: calc(65% - var(--grid-desktop-horizontal-spacing) / 2);
