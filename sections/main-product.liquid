@@ -1006,9 +1006,22 @@
                       {%- assign related_title = related_product.title -%}
                     {%- endif -%}
                     {%- if related_link != blank -%}
-                      <a class="zz-related-product" href="{{ related_link }}"{% if copy == 1 %} {{ block.shopify_attributes }}{% endif %}>
+                      <a
+                        class="zz-related-product"
+                        href="{{ related_link }}"
+                        data-upcoming-trigger
+                        aria-haspopup="dialog"
+                        {% if copy == 1 %}{{ block.shopify_attributes }}{% endif %}
+                      >
                     {%- else -%}
-                      <article class="zz-related-product"{% if copy == 1 %} {{ block.shopify_attributes }}{% endif %}>
+                      <article
+                        class="zz-related-product"
+                        data-upcoming-trigger
+                        role="button"
+                        tabindex="0"
+                        aria-haspopup="dialog"
+                        {% if copy == 1 %}{{ block.shopify_attributes }}{% endif %}
+                      >
                     {%- endif -%}
                       <div class="zz-related-product__image">
                         {%- if related_product != blank and related_product.featured_image != blank -%}

@@ -36,6 +36,8 @@
     {% endif %}
 
     {% render 'meta-tags' %}
+    {{ 'upcoming-modal.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'upcoming-modal.js' | asset_url }}" defer="defer"></script>
 
     <script type="module">
       import * as StandardEvents from 'https://cdn.shopify.com/storefront/standard-events.js';
@@ -352,6 +354,23 @@
     </main>
 
     {% sections 'footer-group' %}
+
+    <div
+      class="upcoming-modal"
+      id="UpcomingModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="UpcomingModalTitle"
+      aria-hidden="true"
+      hidden
+    >
+      <div class="upcoming-modal__panel" tabindex="-1">
+        <button class="upcoming-modal__close" type="button" aria-label="Cerrar aviso">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <p class="upcoming-modal__title" id="UpcomingModalTitle">PROXIMAMENTE</p>
+      </div>
+    </div>
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
