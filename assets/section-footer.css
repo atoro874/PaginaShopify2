@@ -77,6 +77,12 @@
   border-top: 0;
 }
 
+.footer__content-bottom.scroll-trigger.animate--slide-in {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+
 .footer__content-bottom-wrapper {
   position: relative;
   z-index: 1;
@@ -114,11 +120,6 @@
     justify-content: center;
   }
 
-  .footer__content-bottom.scroll-trigger.animate--slide-in {
-    animation: none;
-    opacity: 1;
-    transform: inherit;
-  }
 }
 
 .footer__localization:empty + .footer__column--info {
