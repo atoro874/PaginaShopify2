@@ -132,7 +132,8 @@
           "type": "carrier_logos",
           "settings": {
             "heading": "Transportadoras",
-            "logo_veloces": "shopify://shop_images/v.jpg"
+            "logo_veloces": "shopify://shop_images/v.jpg",
+            "logo_envia": "shopify://shop_images/3.png"
           }
         },
         "module-mero-macho": {
