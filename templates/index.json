@@ -133,7 +133,12 @@
           "settings": {
             "heading": "Transportadoras",
             "logo_veloces": "shopify://shop_images/v.jpg",
-            "logo_envia": "shopify://shop_images/3.png"
+            "logo_envia": "shopify://shop_images/3.png",
+            "logo_interrapidisimo": "shopify://shop_images/images.jpg",
+            "logo_domina": "shopify://shop_images/channels4_profile.jpg",
+            "logo_coordinadora": "shopify://shop_images/channels4_profile_1.jpg",
+            "logo_minutos_99": "shopify://shop_images/images_1.jpg",
+            "logo_tcc": "shopify://shop_images/tcc_1741107739.jpg"
           }
         },
         "module-mero-macho": {
