@@ -323,10 +323,11 @@ product-info[id^='MainProduct-'] .product-benefits__icon img {
 
 .zz-product-price__badge {
   padding: 0.4rem 0.8rem;
-  color: #fff;
+  color: #000;
   background: var(--zz-product-accent, #4d0e13);
   border-radius: 0.4rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .zz-product-rating {
