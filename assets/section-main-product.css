@@ -740,7 +740,7 @@ product-info[id^='MainProduct-'] .product-benefits__icon img {
 .product-carriers__list {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
   overflow-x: auto;
   margin: 0;
   padding: 0 0 0.4rem;
@@ -754,17 +754,62 @@ product-info[id^='MainProduct-'] .product-benefits__icon img {
 
 .product-carriers__item {
   display: grid;
-  flex: 0 0 8rem;
-  height: 3.2rem;
+  flex: 0 0 4.4rem;
+  width: 4.4rem;
+  height: 4.4rem;
   place-items: center;
   scroll-snap-align: start;
 }
 
 .product-carriers__item img {
   display: block;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  padding: 0.3rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  border-radius: 50%;
+  background: #fff;
   object-fit: contain;
+}
+
+.product-carriers__fallback {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: #4d0e13;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.product-carriers__fallback--veloces {
+  background: #ee1784;
+}
+
+.product-carriers__fallback--envia,
+.product-carriers__fallback--tcc {
+  background: #e52430;
+}
+
+.product-carriers__fallback--interrapidisimo {
+  background: #141414;
+}
+
+.product-carriers__fallback--domina {
+  background: #2739e8;
+}
+
+.product-carriers__fallback--coordinadora {
+  background: #0788ca;
+}
+
+.product-carriers__fallback--minutos_99 {
+  color: #344a00;
+  background: #b6e347;
+  border: 0.2rem solid #6caa26;
 }
 
 
