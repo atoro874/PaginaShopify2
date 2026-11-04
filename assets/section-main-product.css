@@ -583,8 +583,8 @@ product-info[id^='MainProduct-'] .product-benefits__icon img {
 }
 
 .zz-product-review__image {
-  width: 7.2rem;
-  height: 7.2rem;
+  width: 9rem;
+  height: 9rem;
   margin-top: 1rem;
   overflow: hidden;
   border-radius: 50%;
