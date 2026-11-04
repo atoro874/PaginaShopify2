@@ -753,15 +753,23 @@ product-info[id^='MainProduct-'] .product-benefits__icon img {
 }
 
 .product-carriers__item {
-  display: grid;
-  flex: 0 0 4.4rem;
-  width: 4.4rem;
-  height: 4.4rem;
-  place-items: center;
+  display: flex;
+  flex: 0 0 6.4rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
   scroll-snap-align: start;
 }
 
-.product-carriers__item img {
+.product-carriers__icon {
+  display: grid;
+  width: 4.4rem;
+  height: 4.4rem;
+  place-items: center;
+}
+
+.product-carriers__icon img {
   display: block;
   width: 100%;
   height: 100%;
@@ -770,6 +778,13 @@ product-info[id^='MainProduct-'] .product-benefits__icon img {
   border-radius: 50%;
   background: #fff;
   object-fit: contain;
+}
+
+.product-carriers__name {
+  color: var(--zz-product-text, #4d0e13);
+  font-size: 0.95rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .product-carriers__fallback {

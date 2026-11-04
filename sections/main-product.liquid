@@ -648,25 +648,24 @@
                             {%- assign carrier_mark = 'TCC' -%}
                         {%- endcase -%}
                         <li class="product-carriers__item">
-                          {%- if carrier_logo != blank -%}
-                            {{
-                              carrier_logo
-                              | image_url: width: 240
-                              | image_tag:
-                                loading: 'lazy',
-                                widths: '96, 144, 192, 240',
-                                sizes: '4.4rem',
-                                alt: carrier_name
-                            }}
-                          {%- else -%}
-                            <span
-                              class="product-carriers__fallback product-carriers__fallback--{{ carrier_key }}"
-                              role="img"
-                              aria-label="{{ carrier_name }}"
-                            >
-                              {{- carrier_mark -}}
-                            </span>
-                          {%- endif -%}
+                          <span class="product-carriers__icon" aria-hidden="true">
+                            {%- if carrier_logo != blank -%}
+                              {{
+                                carrier_logo
+                                | image_url: width: 240
+                                | image_tag:
+                                  loading: 'lazy',
+                                  widths: '96, 144, 192, 240',
+                                  sizes: '4.4rem',
+                                  alt: ''
+                              }}
+                            {%- else -%}
+                              <span class="product-carriers__fallback product-carriers__fallback--{{ carrier_key }}">
+                                {{- carrier_mark -}}
+                              </span>
+                            {%- endif -%}
+                          </span>
+                          <span class="product-carriers__name">{{ carrier_name }}</span>
                         </li>
                       {%- endfor -%}
                     </ul>
