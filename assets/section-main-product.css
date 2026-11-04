@@ -754,7 +754,7 @@ product-info[id^='MainProduct-'] .product-benefits__icon img {
 
 .product-carriers__item {
   display: flex;
-  flex: 0 0 6.4rem;
+  flex: 0 0 8.4rem;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
@@ -781,10 +781,13 @@ product-info[id^='MainProduct-'] .product-benefits__icon img {
 }
 
 .product-carriers__name {
+  display: block;
+  width: 100%;
   color: var(--zz-product-text, #4d0e13);
   font-size: 0.95rem;
   line-height: 1.2;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .product-carriers__fallback {
