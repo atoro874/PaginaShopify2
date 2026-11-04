@@ -44,14 +44,15 @@
           "type": "review",
           "settings": {
             "rating": 5,
-            "quote": "<p>Yo la verdad que tenía mis dudas al principio, pero las barras de gelatina dan un power brutal para el rendimiento 😅. Mi pareja y yo notamos el cambio desde la primera semana. 100% recomendado.</p>",
-            "author": "— Carlos M. (Bogotá)"
+            "quote": "<p>Yo la verdad que tenía mis dudas al principio, pero las barras de gelatina dan un power brutal para el rendimiento 😅. Mi pareja y yo notamos el cambio desde la primera semana y ni hablar del ungüento Crece Miembro 😅. 100% recomendado.</p>",
+            "author": "— Carlos M. (Bogotá)",
+            "image": "shopify://shop_images/Gemini_Generated_Image_udel1hudel1hudel.jpg"
           }
         },
         "review-2": {
           "type": "review",
           "settings": {
-            "rating": 5,
+            "rating": 4,
             "quote": "<p>Lo que más me urgía era que llegara discreto por la privacidad. El paquete venía completamente sellado sin logos raros y pagué en efectivo al recibir en la puerta de mi casa. Excelente servicio.</p>",
             "author": "— Andrés P. (Medellín)",
             "image": "shopify://shop_images/s.jpg"
@@ -63,6 +64,15 @@
             "rating": 5,
             "quote": "<p>El combo completo vale totalmente la pena. El gel de masaje rinde un montón y la combinación con el producto oral da resultados increíbles. Volveré a pedir? obviamente 😁.</p>",
             "author": "— David R. (Cali)"
+          }
+        },
+        "review_MX6NpE": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "<p>Estuve ocupada cuando llego así que pedí enviarlo a la agencia transportadora cercana, y el producto ni hablar, junto a mi marido le dio mas calentura a nuestra relacion 😏</p>",
+            "author": "— Reina. C (Soacha)",
+            "image": "shopify://shop_images/sd.jpg"
           }
         },
         "title": {
@@ -244,6 +254,7 @@
         "review-1",
         "review-2",
         "review-3",
+        "review_MX6NpE",
         "title",
         "rating",
         "price",
