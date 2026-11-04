@@ -117,6 +117,12 @@
             "benefit_3": "PAGO CONTRA ENTREGA"
           }
         },
+        "carrier-logos": {
+          "type": "carrier_logos",
+          "settings": {
+            "heading": "Transportadoras"
+          }
+        },
         "module-mero-macho": {
           "type": "product_module",
           "settings": {
@@ -250,6 +256,7 @@
         "description",
         "buy_buttons",
         "product_benefits",
+        "carrier-logos",
         "module-mero-macho",
         "module-crece-miembro",
         "faq-1",

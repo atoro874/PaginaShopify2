@@ -724,6 +724,57 @@ product-info[id^='MainProduct-'] .product-benefits__icon img {
   object-fit: contain;
 }
 
+.product-carriers {
+  margin-top: 1.6rem;
+  padding-top: 1rem;
+  border-top: 0.1rem solid color-mix(in srgb, var(--zz-product-accent, #e2c0bb) 60%, transparent);
+}
+
+.product-carriers__heading {
+  margin: 0 0 0.8rem;
+  color: var(--zz-product-text, #4d0e13);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.product-carriers__list {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  overflow-x: auto;
+  margin: 0;
+  padding: 0 0 0.4rem;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+
+.product-carriers__list::-webkit-scrollbar {
+  display: none;
+}
+
+.product-carriers__item {
+  display: grid;
+  flex: 0 0 8rem;
+  height: 3.2rem;
+  place-items: center;
+  scroll-snap-align: start;
+}
+
+.product-carriers__item img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.product-carriers__item span {
+  color: #344a67;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
 .zz-related-product h3 {
   margin: 1rem 0 0.5rem;
   color: inherit;

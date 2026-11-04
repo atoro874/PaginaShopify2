@@ -609,6 +609,54 @@
                       {%- endif -%}
                     </ul>
                   {%- endif -%}
+                {%- when 'carrier_logos' -%}
+                  {%- assign carrier_keys = 'veloces,envia,interrapidisimo,domina,coordinadora,minutos_99,tcc' | split: ',' -%}
+                  <section
+                    class="product-carriers"
+                    aria-label="{{ block.settings.heading | escape }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    {%- if block.settings.heading != blank -%}
+                      <h3 class="product-carriers__heading">{{ block.settings.heading | escape }}</h3>
+                    {%- endif -%}
+                    <ul class="product-carriers__list" role="list">
+                      {%- for carrier_key in carrier_keys -%}
+                        {%- assign carrier_logo_setting = 'logo_' | append: carrier_key -%}
+                        {%- assign carrier_logo = block.settings[carrier_logo_setting] -%}
+                        {%- case carrier_key -%}
+                          {%- when 'veloces' -%}
+                            {%- assign carrier_name = 'Veloces' -%}
+                          {%- when 'envia' -%}
+                            {%- assign carrier_name = 'Envía' -%}
+                          {%- when 'interrapidisimo' -%}
+                            {%- assign carrier_name = 'Interrapidísimo' -%}
+                          {%- when 'domina' -%}
+                            {%- assign carrier_name = 'Domina' -%}
+                          {%- when 'coordinadora' -%}
+                            {%- assign carrier_name = 'Coordinadora' -%}
+                          {%- when 'minutos_99' -%}
+                            {%- assign carrier_name = '99minutos' -%}
+                          {%- when 'tcc' -%}
+                            {%- assign carrier_name = 'TCC' -%}
+                        {%- endcase -%}
+                        <li class="product-carriers__item">
+                          {%- if carrier_logo != blank -%}
+                            {{
+                              carrier_logo
+                              | image_url: width: 240
+                              | image_tag:
+                                loading: 'lazy',
+                                widths: '96, 144, 192, 240',
+                                sizes: '8rem',
+                                alt: carrier_name
+                            }}
+                          {%- else -%}
+                            <span>{{ carrier_name }}</span>
+                          {%- endif -%}
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </section>
                 {%- when 'rating' -%}
                   {%- if section.settings.rating_score > 0 -%}
                     <div
@@ -1540,6 +1588,58 @@
           "id": "share_label",
           "label": "t:sections.main-product.blocks.share.settings.text.label",
           "default": "t:sections.main-product.blocks.share.settings.text.default"
+        }
+      ]
+    },
+    {
+      "type": "carrier_logos",
+      "name": "Transportadoras",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título",
+          "default": "Transportadoras"
+        },
+        {
+          "type": "header",
+          "content": "Logotipos (opcional)"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_veloces",
+          "label": "Veloces"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_envia",
+          "label": "Envía"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_interrapidisimo",
+          "label": "Interrapidísimo"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_domina",
+          "label": "Domina"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_coordinadora",
+          "label": "Coordinadora"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_minutos_99",
+          "label": "99minutos"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_tcc",
+          "label": "TCC"
         }
       ]
     },
