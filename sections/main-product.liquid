@@ -939,6 +939,20 @@
                   {%- if block.settings.author != blank -%}
                     <p class="zz-product-review__author">{{ block.settings.author | escape }}</p>
                   {%- endif -%}
+                  {%- if block.settings.image != blank -%}
+                    {%- assign review_image_alt = block.settings.image.alt | default: block.settings.author -%}
+                    <div class="zz-product-review__image">
+                      {{
+                        block.settings.image
+                        | image_url: width: 240
+                        | image_tag:
+                          loading: 'lazy',
+                          widths: '72, 96, 144, 240',
+                          sizes: '7.2rem',
+                          alt: review_image_alt
+                      }}
+                    </div>
+                  {%- endif -%}
                 </article>
               {%- endfor -%}
             </div>
@@ -1138,6 +1152,11 @@
           "id": "author",
           "label": "Autor",
           "default": "Nombre del cliente"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen pequeña del comentario"
         }
       ]
     },
