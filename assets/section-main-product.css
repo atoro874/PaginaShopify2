@@ -321,13 +321,13 @@ product-info[id^='MainProduct-'] .product-benefits__icon img {
   font-weight: 400;
 }
 
-.zz-product-price__badge {
+product-info[id^='MainProduct-'] .zz-product-price .zz-product-price__badge {
   padding: 0.4rem 0.8rem;
   color: #000;
   background: var(--zz-product-accent, #4d0e13);
   border-radius: 0.4rem;
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: 1.6rem;
+  font-weight: 700;
 }
 
 .zz-product-rating {
