@@ -5,6 +5,22 @@
 {{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  assign footer_is_antihongos = false
+  assign footer_wave_background = '#eee4da'
+  assign footer_wave_accent = '#d99aa2'
+  assign footer_wave_shadow = '#bd7884'
+  assign footer_wave_base = '#4a0f14'
+
+  if request.page_type == 'product' and template.suffix == 'antihongos'
+    assign footer_is_antihongos = true
+    assign footer_wave_background = '#c3ca92'
+    assign footer_wave_accent = '#a4b17b'
+    assign footer_wave_shadow = '#4e653d'
+    assign footer_wave_base = '#203318'
+  endif
+-%}
+
 {%- style -%}
   .footer {
     margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
@@ -16,13 +32,23 @@
   }
 
   .footer.section-{{ section.id }}-padding {
-    --color-background: 74, 15, 20;
-    --color-foreground: 255, 255, 255;
-    --color-button: 238, 228, 218;
-    --color-button-text: 74, 15, 20;
-    --color-secondary-button: 74, 15, 20;
-    --color-secondary-button-text: 255, 255, 255;
-    --gradient-background: #4a0f14;
+    {% if footer_is_antihongos %}
+      --color-background: 32, 51, 24;
+      --color-foreground: 255, 255, 255;
+      --color-button: 195, 202, 146;
+      --color-button-text: 32, 51, 24;
+      --color-secondary-button: 32, 51, 24;
+      --color-secondary-button-text: 255, 255, 255;
+      --gradient-background: #203318;
+    {% else %}
+      --color-background: 74, 15, 20;
+      --color-foreground: 255, 255, 255;
+      --color-button: 238, 228, 218;
+      --color-button-text: 74, 15, 20;
+      --color-secondary-button: 74, 15, 20;
+      --color-secondary-button-text: 255, 255, 255;
+      --gradient-background: #4a0f14;
+    {% endif %}
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
@@ -40,9 +66,21 @@
       padding-top: calc(5rem + {{ section.settings.padding_top }}px);
     }
   }
+
+  {% if footer_is_antihongos %}
+    .footer--antihongos,
+    .footer--antihongos .footer__content-bottom {
+      background: #203318;
+      color: #fff;
+    }
+
+    .footer--antihongos .footer__payment-badge {
+      border-color: rgba(195, 202, 146, 0.65);
+    }
+  {% endif %}
 {%- endstyle -%}
 
-<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding{% if footer_is_antihongos %} footer--antihongos{% endif %}">
   <svg
     class="footer__wave"
     xmlns="http://www.w3.org/2000/svg"
@@ -51,17 +89,17 @@
     aria-hidden="true"
     focusable="false"
   >
-    <rect width="1440" height="76" fill="#eee4da" />
+    <rect width="1440" height="76" fill="{{ footer_wave_background }}" />
     <path
-      fill="#d99aa2"
+      fill="{{ footer_wave_accent }}"
       d="M0 42 C74 42 97 32 167 33 C245 34 266 50 342 48 C418 46 432 19 510 20 C582 21 603 42 680 42 C758 42 778 29 852 31 C931 33 954 48 1030 46 C1105 44 1125 19 1204 20 C1284 21 1305 40 1376 40 C1402 40 1421 37 1440 36 V76 H0 Z"
     />
     <path
-      fill="#bd7884"
+      fill="{{ footer_wave_shadow }}"
       d="M0 48 C75 48 99 39 170 40 C247 41 270 56 346 55 C422 54 438 29 514 30 C590 31 610 49 686 49 C763 49 786 37 860 39 C936 41 961 56 1037 54 C1113 52 1132 30 1208 31 C1284 32 1308 48 1379 48 C1404 48 1423 46 1440 44 V76 H0 Z"
     />
     <path
-      fill="#4a0f14"
+      fill="{{ footer_wave_base }}"
       d="M0 55 C75 55 102 46 173 47 C248 48 273 63 349 62 C425 61 441 39 517 40 C593 41 614 57 690 57 C766 57 789 47 863 48 C940 49 966 64 1041 62 C1117 60 1137 41 1213 42 C1289 43 1312 57 1382 57 C1407 57 1425 54 1440 52 V76 H0 Z"
     />
   </svg>
