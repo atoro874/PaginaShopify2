@@ -678,15 +678,6 @@
                         role="img"
                         aria-label="Calificación {{ section.settings.rating_score }} de 5{% if section.settings.review_count != blank %}; {{ section.settings.review_count | escape }}{% endif %}"
                       >
-                        {%- if block.settings.rating_profile_image != blank -%}
-                          <span class="zz-product-rating__profile">
-                            {{
-                              block.settings.rating_profile_image
-                              | image_url: width: 120
-                              | image_tag: loading: 'lazy', widths: '56, 84, 112', sizes: '5.6rem', alt: ''
-                            }}
-                          </span>
-                        {%- endif -%}
                         <span class="zz-product-rating__stars" aria-hidden="true">
                           {%- for star in (1..5) -%}
                             <span{% if star > section.settings.rating_score %} class="is-empty"{% endif %}>★</span>
@@ -994,11 +985,22 @@
             >
               {%- for block in review_blocks -%}
                 <article class="zz-product-review" {{ block.shopify_attributes }}>
-                  <p class="zz-product-review__stars" aria-label="Calificación {{ block.settings.rating }} de 5">
-                    {%- for star in (1..5) -%}
-                      <span{% if star > block.settings.rating %} class="is-empty"{% endif %} aria-hidden="true">★</span>
-                    {%- endfor -%}
-                  </p>
+                  <div class="zz-product-review__header">
+                    <p class="zz-product-review__stars" aria-label="Calificación {{ block.settings.rating }} de 5">
+                      {%- for star in (1..5) -%}
+                        <span{% if star > block.settings.rating %} class="is-empty"{% endif %} aria-hidden="true">★</span>
+                      {%- endfor -%}
+                    </p>
+                    {%- if template.suffix == 'antihongos' and block.settings.profile_image != blank -%}
+                      <div class="zz-product-review__profile">
+                        {{
+                          block.settings.profile_image
+                          | image_url: width: 120
+                          | image_tag: loading: 'lazy', widths: '56, 84, 112', sizes: '5.6rem', alt: block.settings.author
+                        }}
+                      </div>
+                    {%- endif -%}
+                  </div>
                   {%- if block.settings.quote != blank -%}
                     <div class="rte">{{ block.settings.quote }}</div>
                   {%- endif -%}
@@ -1222,7 +1224,12 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Imagen pequeña del comentario"
+          "label": "Foto del comentario (cuadrada)"
+        },
+        {
+          "type": "image_picker",
+          "id": "profile_image",
+          "label": "Foto de perfil (redonda)"
         }
       ]
     },
@@ -1953,11 +1960,6 @@
           "id": "show_count",
           "label": "Mostrar cantidad de reseñas",
           "default": true
-        },
-        {
-          "type": "image_picker",
-          "id": "rating_profile_image",
-          "label": "Foto de perfil junto a la calificación"
         },
         {
           "type": "select",

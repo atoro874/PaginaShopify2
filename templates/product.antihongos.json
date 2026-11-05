@@ -85,7 +85,6 @@
           "type": "rating",
           "settings": {
             "show_count": true,
-            "rating_profile_image": "",
             "alignment": "left"
           }
         },

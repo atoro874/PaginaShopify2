@@ -338,22 +338,6 @@ product-info[id^='MainProduct-'] .zz-product-price .zz-product-price__badge {
   gap: 0.5rem;
 }
 
-.zz-product-rating__profile {
-  display: block;
-  width: 5.6rem;
-  height: 5.6rem;
-  flex: 0 0 5.6rem;
-  overflow: hidden;
-  border-radius: 50%;
-}
-
-.zz-product-rating__profile img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .zz-product-rating__stars,
 .zz-product-review__stars {
   color: var(--zz-product-accent, #b08023);
@@ -597,6 +581,33 @@ product-info[id^='MainProduct-'] .zz-product-price .zz-product-price__badge {
 
 .zz-product-review__author {
   font-weight: 700;
+}
+
+.zz-product-review__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.zz-product-review__header .zz-product-review__stars {
+  margin: 0;
+}
+
+.zz-product-review__profile {
+  width: 5.6rem;
+  height: 5.6rem;
+  flex: 0 0 5.6rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.zz-product-review__profile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .zz-product-review__image {
