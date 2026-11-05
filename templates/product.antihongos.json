@@ -44,35 +44,34 @@
           "type": "review",
           "settings": {
             "rating": 5,
-            "quote": "<p>Yo la verdad que tenía mis dudas al principio del 2x1, pero las barras de gelatina dan un power brutal para el rendimiento 😅. Mi pareja y yo notamos el cambio desde la primera semana y ni hablar del ungüento Crece Miembro 😅. 100% recomendado.</p>",
-            "author": "— Carlos M. (Bogotá)",
-            "image": "shopify://shop_images/Gemini_Generated_Image_udel1hudel1hudel.jpg"
+            "quote": "<p>Tenía mis dudas de pedir esto por internet porque uno nunca sabe, pero me dio confianza poder pagar en efectivo cuando el mensajero me entregó el paquete aquí en Bogotá. Lleva pocos días usándose en casa y ya se nota el cambio. 100% recomendado.<br/><br/></p>",
+            "author": "Miriam G. (Cali)",
+            "image": "shopify://shop_images/Gemini_Generated_Image_t4pnhtt4pnhtt4pn.jpg"
           }
         },
         "review-2": {
           "type": "review",
           "settings": {
-            "rating": 4,
-            "quote": "<p>Lo que más me urgía era que llegara discreto por la privacidad. El paquete venía completamente sellado sin logos raros y pagué en efectivo al recibir en la puerta de mi casa. Excelente servicio.</p>",
-            "author": "— Andrés P. (Medellín)",
-            "image": "shopify://shop_images/s.jpg"
+            "rating": 5,
+            "quote": "<p>Yo tenía el problema en el dedo gordo del pie y probé mil cosas caseras sin resultado. Con este gotero en dos semanas el cambio es tremendo, se nota la uña limpia. Lo mejor es que pedí el pago contra entrega para mi oficina en Envigado y llegó rapidísimo sin atados<br/><br/></p>",
+            "author": "Santiago V. (Envigado)",
+            "image": "shopify://shop_images/tratamiento-hongos-unas-chamartin-madrid.jpg"
           }
         },
         "review-3": {
           "type": "review",
           "settings": {
             "rating": 5,
-            "quote": "<p>El combo completo vale totalmente la pena. El gel de masaje rinde un montón y la combinación con el producto oral da resultados increíbles. Volveré a pedir? obviamente 😁.</p>",
-            "author": "— David R. (Cali)"
+            "quote": "<p>Súper recomendado. Al principio uno desconfía de comprar estas cosas por Facebook, pero que el mensajero me entregara el paquete sellado en la puerta de la casa y pagarle me dio total tranquilidad. Funciona muy bien.<br/><br/></p>",
+            "author": "Marcela G. (Villavicencio)"
           }
         },
         "review_MX6NpE": {
           "type": "review",
           "settings": {
             "rating": 5,
-            "quote": "<p>Estuve ocupada cuando llego así que pedí enviarlo a la agencia transportadora cercana, y el producto ni hablar, junto a mi marido le dio mas calentura a nuestra relacion 😏</p>",
-            "author": "— Reina. C (Soacha)",
-            "image": "shopify://shop_images/sd.jpg"
+            "quote": "<p>El producto rinde bastante y no es molestoso de aplicar. En mi caso empecé a notar que la picazón y el mal color se fueron quitando con los días. El envío a Manizales tardó solo dos días. Excelente servicio y cero complicaciones.<br/></p><p></p>",
+            "author": "Esteban R. (Manizales)"
           }
         },
         "title": {
@@ -145,9 +144,9 @@
           "type": "product_module",
           "settings": {
             "tab_label": "Componentes",
-            "heading": "Componentes",
-            "content": "",
-            "image": "",
+            "heading": "🧪 COMPONENTES ACTIVOS Y SU ACCIÓN",
+            "content": "<p>🌶️ <strong>Jengibre Natural:</strong><br/>&nbsp; Contribuye a <strong>eliminar hongos y bacterias</strong>, mejora la circulación local y apoya la regeneración de la uña.</p><p>🍃 <strong>Árbol de Té:</strong><br/>&nbsp; Ingrediente reconocido por su acción <strong>antimicótica y desinfectante</strong>, ayuda a limpiar profundamente y prevenir recaídas.</p><p>🧪 <strong>Ácido Salicílico:</strong><br/>&nbsp; Ayuda a <strong>suavizar la uña endurecida</strong>, permitiendo que el tratamiento penetre mejor y sea más efectivo.</p><p>💎 <strong>Vitaminas E y B7 (Biotina):</strong><br/>&nbsp; Nutren la uña desde la raíz, fortalecen su estructura y estimulan un crecimiento más sano y resistente.</p>",
+            "image": "shopify://shop_images/s_5790f7fa-a466-4ff8-8694-a1eb94c53b92.jpg",
             "image_position": "right",
             "image_fit": "cover"
           }
@@ -156,9 +155,9 @@
           "type": "product_module",
           "settings": {
             "tab_label": "Función",
-            "heading": "Función",
-            "content": "",
-            "image": "",
+            "heading": "🔬 ¿CUÁL ES LA FUNCIÓN DE ESTE TRATAMIENTO?",
+            "content": "<p>Este tratamiento líquido antifúngico está desarrollado para <strong>combatir eficazmente los hongos que afectan las uñas de manos y pies (onicomicosis)</strong>, actuando directamente en la zona infectada y ayudando a restaurar la uña desde su base.</p><p>Su fórmula de rápida absorción trabaja para:</p><p>🚷 <strong>Eliminar el hongo responsable de la infección</strong>, evitando que continúe avanzando.<br/>🧴 <strong>Sanear la uña y la piel que la rodea</strong>, reduciendo microorganismos dañinos.<br/>🌈 <strong>Mejorar visiblemente el color y la apariencia de la uña</strong>, dejándola más limpia y natural.<br/>🌿 <strong>Favorecer la regeneración de una uña sana</strong>, reemplazando progresivamente la uña afectada.</p>",
+            "image": "shopify://shop_images/Reconstruccion_ungueal.jpg",
             "image_position": "right",
             "image_fit": "cover"
           }
@@ -167,35 +166,35 @@
           "type": "faq",
           "settings": {
             "question": "¿El envío es totalmente discreto?",
-            "answer": "<p>Sí, absolutamente. Todos nuestros paquetes se envían en cajas o sobres completamente sellados, sin logotipos ni descripción externa que revele el contenido. Tu privacidad es nuestra prioridad.</p>"
+            "answer": "<p>¡Absolutamente! Entendemos tu necesidad de privacidad. Todos los pedidos se empaquetan en cajas o sobres <strong>completamente neutros</strong>, sin logos de la marca ni mención del contenido. La etiqueta de envío solo mostrará los datos de remitente necesarios para la transportadora (como \"Logística\"), asegurando que nadie sepa qué hay dentro hasta que tú lo abras.<br/><br/></p>"
           }
         },
         "faq-2": {
           "type": "faq",
           "settings": {
             "question": "¿Cómo funciona el pago contra entrega?",
-            "answer": "<p>Haces tu pedido y pagas directamente a la empresa de mensajería al recibirlo en tu domicilio.</p>"
+            "answer": "<p>&nbsp;Es el método más seguro y fácil. Realizas tu pedido completando tus datos en el formulario. Nosotros procesamos el envío y, cuando la transportadora llegue a tu dirección, <strong>le pagas el valor total del pedido</strong> directamente al mensajero. ¡Así de simple! No necesitas tarjetas de crédito ni hacer transferencias previas.<br/><br/></p>"
           }
         },
         "faq-3": {
           "type": "faq",
           "settings": {
             "question": "¿Cuánto tarda en llegar el pedido?",
-            "answer": "<p>Los tiempos de envío dependen de la ciudad. Si necesitamos confirmar tus datos, nos comunicaremos contigo antes del despacho.</p>"
+            "answer": "<p>Los tiempos de envío dependen de la ciudad. Si necesitamos confirmar tus datos, nos comunicaremos contigo antes del despacho.<br/><strong>Procura que tu información sea precisa para que te llegue rápido!</strong></p>"
           }
         },
         "faq-4": {
           "type": "faq",
           "settings": {
-            "question": "¿Cómo se deben usar los productos del dúo?",
-            "answer": "<p>Sigue las instrucciones indicadas en la etiqueta de cada producto. El gel es de uso externo.</p>"
+            "question": "¿Cómo debo aplicar el tratamiento para ver resultados en 7 días?",
+            "answer": "<p>Lava y seca muy bien la uña afectada antes de cada aplicación. Usa el gotero de precisión para aplicar 2 o 3 gotas directamente sobre la superficie de la uña y el contorno de la cutícula. Úsalo de 2 a 3 veces al día de forma constante para acelerar la recuperación.<br/><br/></p>"
           }
         },
         "faq-5": {
           "type": "faq",
           "settings": {
             "question": "¿Tienen efectos secundarios o contraindicaciones?",
-            "answer": "<p>Revisa los ingredientes y las instrucciones del empaque. Si tienes una condición médica o sensibilidad a alguno de sus componentes, consulta con un profesional de la salud antes de usarlo.</p>"
+            "answer": "<p>&nbsp;No. Su fórmula botánica a base de jengibre y extractos naturales es de rápida absorción, no es grasa y no deja residuos molestos que manchen tus medias o calzado. Es suave con la piel y apta para uso diario.</p>"
           }
         },
         "related-1": {
@@ -299,7 +298,7 @@
       "settings": {
         "background_color": "#ffffff",
         "text_color": "#4d0e13",
-        "accent_color": "#7BF1A8",
+        "accent_color": "#7bf1a8",
         "badge_text": "",
         "product_title": "7 Días Elimina Hongo 🍃",
         "rating_score": 5,
@@ -309,9 +308,9 @@
         "discount_label": "🔥Últimas unidades",
         "introduction": "<p>&nbsp; Dile adiós a las uñas amarillas, gruesas y debilitadas. Restaura la belleza natural de tus manos y pies en días.</p>",
         "reviews_eyebrow": "",
-        "reviews_heading": "Reseñas de la comunidad",
+        "reviews_heading": "Reseñas de nuestra comunidad",
         "reviews_subheading": "Lee las experiencias de nuestros clientes.",
-        "reviews_background": "#d8c4ac",
+        "reviews_background": "#2D9966",
         "faq_heading": "Preguntas frecuentes",
         "faq_background": "#eee4da",
         "show_related_products": true,
