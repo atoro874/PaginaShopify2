@@ -28,6 +28,20 @@
   scroll-margin-top: 10rem;
 }
 
+body:has(main[data-template='index']) .home-featured-products .product-grid {
+  justify-content: center;
+}
+
+body:has(main[data-template='index']) .announcement-bar-section {
+  display: none;
+}
+
+.home-featured-products .home-product-image-link {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+}
+
 .upcoming-modal[hidden] {
   display: none;
 }

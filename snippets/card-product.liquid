@@ -41,6 +41,7 @@
     if ratio == 0 or ratio == null
       assign ratio = 1
     endif
+    assign card_product_url = card_link_url | default: card_product.url
   -%}
 
   <product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: product_view_context | escape }}">
@@ -107,6 +108,13 @@
                     height="{{ card_product.media[1].height }}"
                   >
                 {%- endif -%}
+                {%- if card_link_url != blank -%}
+                  <a
+                    class="home-product-image-link"
+                    href="{{ card_product_url }}"
+                    aria-label="Ver catálogo: {{ card_product.title | escape }}"
+                  ></a>
+                {%- endif -%}
               </div>
             </div>
           {%- endif -%}
@@ -119,7 +127,7 @@
                 {% endif %}
               >
                 <a
-                  href="{{ card_product.url }}"
+                  href="{{ card_product_url }}"
                   id="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}"
                   class="full-unstyled-link"
                   aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}{% if card_product.available == false or card_product.compare_at_price > card_product.price %} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}{% endif %}"
@@ -156,7 +164,7 @@
               {% endif %}
             >
               <a
-                href="{{ card_product.url }}"
+                href="{{ card_product_url }}"
                 id="CardLink-{{ section_id }}-{{ card_product.id }}"
                 class="full-unstyled-link"
                 aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }}{% if card_product.available == false or card_product.compare_at_price > card_product.price %} Badge-{{ section_id }}-{{ card_product.id }}{% endif %}"
@@ -504,7 +512,7 @@
                             {% if card_product == blank %}
                               role="link" aria-disabled="true"
                             {% else %}
-                              href="{{ card_product.url }}"
+                              href="{{ card_product_url }}"
                             {% endif %}
                             class="link product__view-details animate-arrow small-hide medium-hide"
                           >
@@ -513,7 +521,7 @@
                           </a>
                         </div>
                         <div class="quick-add-modal__content-info--bulk-details large-up-hide">
-                          <a href="{{ card_product.url }}" class="full-unstyled-link">
+                          <a href="{{ card_product_url }}" class="full-unstyled-link">
                             <h3>{{ card_product.title | escape }}</h3>
                           </a>
                           {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
@@ -526,7 +534,7 @@
                       </div>
                       <div>
                         <div class="quick-add-modal__content-info--bulk-details small-hide medium-hide">
-                          <a href="{{ card_product.url }}" class="full-unstyled-link">
+                          <a href="{{ card_product_url }}" class="full-unstyled-link">
                             <h3 class="h2">
                               {{ card_product.title | escape }}
                             </h3>

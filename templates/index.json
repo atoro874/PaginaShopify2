@@ -9,67 +9,94 @@
  */
 {
   "sections": {
-    "home_hero": {
-      "type": "image-banner",
+    "home_story_one": {
+      "type": "image-with-text",
       "blocks": {
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Descubre nuestros productos",
-            "heading_size": "h0"
+            "heading": "Encuentra lo que necesitas",
+            "heading_size": "h1"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "Encuentra opciones para lo que necesitas.",
+            "text": "<p>Explora nuestra selección y descubre productos para tu día a día.</p>",
             "text_style": "body"
-          }
-        },
-        "buttons": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Comprar ahora",
-            "button_link_1": "#catalogo",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
         "heading",
-        "text",
-        "buttons"
+        "text"
       ],
       "settings": {
-        "image_overlay_opacity": 20,
-        "image_height": "large",
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
         "image_behavior": "none",
-        "desktop_content_position": "middle-left",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
-        "show_text_box": false,
-        "color_scheme": "scheme-1",
-        "stack_images_on_mobile": true,
         "mobile_content_alignment": "left",
-        "show_text_below": false
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "home_story_two": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Una selección para ti",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Conoce nuestros productos y encuentra la opción ideal para ti.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "catalog": {
       "type": "featured-collection",
       "settings": {
         "collection": "all",
-        "products_to_show": 8,
-        "title": "Catálogo",
+        "products_to_show": 3,
+        "title": "Productos destacados",
         "heading_size": "h1",
-        "description": "<p>Encuentra el producto ideal para ti.</p>",
+        "description": "",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 3,
         "enable_desktop_slider": false,
         "full_width": false,
-        "show_view_all": true,
+        "show_view_all": false,
         "view_all_style": "solid",
         "color_scheme": "scheme-1",
         "image_ratio": "adapt",
@@ -79,14 +106,15 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
-        "swipe_on_mobile": true,
+        "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
     }
   },
   "order": [
-    "home_hero",
+    "home_story_one",
+    "home_story_two",
     "catalog"
   ]
 }

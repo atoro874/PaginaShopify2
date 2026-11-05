@@ -12,7 +12,7 @@
   assign footer_wave_shadow = '#bd7884'
   assign footer_wave_base = '#4a0f14'
 
-  if request.page_type == 'product' and template.suffix == 'mero-macho'
+  if request.page_type == 'index' or request.page_type == 'product' and template.suffix == 'mero-macho'
     assign footer_wave_background = '#ffffff'
   elsif request.page_type == 'product' and template.suffix == 'antihongos'
     assign footer_is_antihongos = true
