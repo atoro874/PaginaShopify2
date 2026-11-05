@@ -144,21 +144,10 @@
         "module-mero-macho": {
           "type": "product_module",
           "settings": {
-            "tab_label": "Mero Macho",
-            "heading": "🍎 MERO MACHO – Barras de gelatina eróticas",
-            "content": "<p>&nbsp; Deliciosas barras de gelatina sabor manzana con semillas de chía, creadas para complementar la energía, vitalidad, deseo y rendimiento masculino.<br/></p><ul><li><strong>&nbsp;Componentes sexuales potentes:</strong> 🔥 Fórmula de apoyo al deseo y rendimiento masculino<br/>⚡ Componentes energizantes<br/>🌱 Semillas de chía<br/>🍎 Sabor manzana<br/></li></ul><p><strong>Modo de uso:</strong><br/>Consumir la porción indicada en la etiqueta antes de la actividad física o íntima. <strong>No exceder la cantidad recomendada.</strong></p><p><strong>Contenido neto:</strong> 200 g.</p>",
-            "image": "shopify://shop_images/sa.jpg",
-            "image_position": "right",
-            "image_fit": "cover"
-          }
-        },
-        "module-crece-miembro": {
-          "type": "product_module",
-          "settings": {
-            "tab_label": "CRECE MIEMBRO",
-            "heading": "🖤 CRECE MIEMBRO – Gel masculino",
-            "content": "<p>&nbsp; Gel de uso externo. Aplicar una pequeña cantidad sobre la piel limpia y seguir las indicaciones del empaque. Evitar el contacto con ojos, mucosas, heridas o piel irritada.</p><p></p><ul><li><strong>Componentes sexuales potentes:</strong> 🔥 Fórmula estimulante para masajes íntimos<br/>💧 Componentes de rápida absorción<br/>⚡ Sensación de activación y vitalidad<br/>🖤 Textura ligera y fácil de aplicar<br/></li></ul><p><strong>Contenido neto:</strong> 8 ml.</p><p><strong>Modo de uso:</strong> Aplicar una pequeña cantidad sobre la piel limpia y realizar un masaje suave hasta su absorción. Evitar el contacto con ojos, mucosas, heridas o piel irritada. Suspender su uso en caso de presentar irritación.<br/><br/><br/><br/></p>",
-            "image": "shopify://shop_images/Gemini_Generated_Image_udel1hudel1hudel.jpg",
+            "tab_label": "Componentes y Función",
+            "heading": "Componentes y función",
+            "content": "",
+            "image": "",
             "image_position": "right",
             "image_fit": "cover"
           }
@@ -283,7 +272,6 @@
         "product_benefits",
         "carrier-logos",
         "module-mero-macho",
-        "module-crece-miembro",
         "faq-1",
         "faq-2",
         "faq-3",
