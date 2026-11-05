@@ -1,69 +1,8 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
       "type": "main-product",
       "blocks": {
-        "gallery-1": {
-          "type": "gallery_image",
-          "settings": {
-            "image": "shopify://shop_images/Prod_1.1.jpg",
-            "alt": "Mero Macho"
-          }
-        },
-        "gallery-2": {
-          "type": "gallery_image",
-          "settings": {
-            "image": "shopify://shop_images/as.jpg",
-            "alt": "Nueva presentación"
-          }
-        },
-        "gallery-3": {
-          "type": "gallery_image",
-          "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_amt8x1amt8x1amt8.jpg",
-            "alt": "Detalle del producto"
-          }
-        },
-        "gallery-4": {
-          "type": "gallery_image",
-          "settings": {
-            "image": "shopify://shop_images/zxzxzcxzc.jpg",
-            "alt": "Presentación del producto"
-          }
-        },
-        "review-1": {
-          "type": "review",
-          "settings": {
-            "rating": 5,
-            "quote": "<p>Yo la verdad que tenía mis dudas al principio, pero las barras de gelatina dan un power brutal para el rendimiento 😅. Mi pareja y yo notamos el cambio desde la primera semana. 100% recomendado.</p>",
-            "author": "— Carlos M. (Bogotá)"
-          }
-        },
-        "review-2": {
-          "type": "review",
-          "settings": {
-            "rating": 5,
-            "quote": "<p>Lo que más me urgía era que llegara discreto por la privacidad. El paquete venía completamente sellado sin logos raros y pagué en efectivo al recibir en la puerta de mi casa. Excelente servicio.</p>",
-            "author": "— Andrés P. (Medellín)"
-          }
-        },
-        "review-3": {
-          "type": "review",
-          "settings": {
-            "rating": 5,
-            "quote": "<p>El combo completo vale totalmente la pena. El gel de masaje rinde un montón y la combinación con el producto oral da resultados increíbles. Volveré a pedir? obviamente 😁.</p>",
-            "author": "— David R. (Cali)"
-          }
-        },
         "title": {
           "type": "title",
           "settings": {
@@ -71,18 +10,11 @@
             "alignment": "left"
           }
         },
-        "rating": {
-          "type": "rating",
-          "settings": {
-            "show_count": true,
-            "alignment": "left"
-          }
-        },
         "price": {
           "type": "price",
           "settings": {
             "show_badges": true,
-            "show_payment_terms": true,
+            "show_payment_terms": false,
             "alignment": "left"
           }
         },
@@ -101,198 +33,28 @@
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": false,
-            "show_gift_card_recipient": true
-          }
-        },
-        "product_benefits": {
-          "type": "product_benefits",
-          "settings": {
-            "accessibility_label": "Beneficios de compra",
-            "columns": 3,
-            "show_benefit_1": true,
-            "benefit_1": "ENVÍO GRATIS",
-            "show_benefit_2": true,
-            "benefit_2": "ENVÍO SEGURO",
-            "show_benefit_3": true,
-            "benefit_3": "PAGO CONTRA ENTREGA"
-          }
-        },
-        "carrier-logos": {
-          "type": "carrier_logos",
-          "settings": {
-            "heading": "Transportadoras"
-          }
-        },
-        "module-mero-macho": {
-          "type": "product_module",
-          "settings": {
-            "tab_label": "Mero Macho",
-            "heading": "🍎 MERO MACHO – Barras de gelatina eróticas",
-            "content": "<p>&nbsp; Deliciosas barras de gelatina sabor manzana con semillas de chía, creadas para complementar la energía, vitalidad, deseo y rendimiento masculino.<br/></p><ul><li><strong>&nbsp;Componentes sexuales potentes:</strong> 🔥 Fórmula de apoyo al deseo y rendimiento masculino<br/>⚡ Componentes energizantes<br/>🌱 Semillas de chía<br/>🍎 Sabor manzana<br/></li></ul><p><strong>Modo de uso:</strong><br/>Consumir la porción indicada en la etiqueta antes de la actividad física o íntima. <strong>No exceder la cantidad recomendada.</strong></p><p><strong>Contenido neto:</strong> 200 g.</p>",
-            "image": "shopify://shop_images/sa.jpg",
-            "image_position": "right",
-            "image_fit": "cover"
-          }
-        },
-        "module-crece-miembro": {
-          "type": "product_module",
-          "settings": {
-            "tab_label": "CRECE MIEMBRO",
-            "heading": "🖤 CRECE MIEMBRO – Gel masculino",
-            "content": "<p>&nbsp; Gel de uso externo. Aplicar una pequeña cantidad sobre la piel limpia y seguir las indicaciones del empaque. Evitar el contacto con ojos, mucosas, heridas o piel irritada.</p><p></p><ul><li><strong>Componentes sexuales potentes:</strong> 🔥 Fórmula estimulante para masajes íntimos<br/>💧 Componentes de rápida absorción<br/>⚡ Sensación de activación y vitalidad<br/>🖤 Textura ligera y fácil de aplicar<br/></li></ul><p><strong>Contenido neto:</strong> 8 ml.</p><p><strong>Modo de uso:</strong> Aplicar una pequeña cantidad sobre la piel limpia y realizar un masaje suave hasta su absorción. Evitar el contacto con ojos, mucosas, heridas o piel irritada. Suspender su uso en caso de presentar irritación.<br/><br/><br/><br/></p>",
-            "image": "shopify://shop_images/Gemini_Generated_Image_udel1hudel1hudel.jpg",
-            "image_position": "right",
-            "image_fit": "cover"
-          }
-        },
-        "faq-1": {
-          "type": "faq",
-          "settings": {
-            "question": "¿El envío es totalmente discreto?",
-            "answer": "<p>Sí, absolutamente. Todos nuestros paquetes se envían en cajas o sobres completamente sellados, sin logotipos ni descripción externa que revele el contenido. Tu privacidad es nuestra prioridad.</p>"
-          }
-        },
-        "faq-2": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Cómo funciona el pago contra entrega?",
-            "answer": "<p>Haces tu pedido y pagas directamente a la empresa de mensajería al recibirlo en tu domicilio.</p>"
-          }
-        },
-        "faq-3": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Cuánto tarda en llegar el pedido?",
-            "answer": "<p>Los tiempos de envío dependen de la ciudad. Si necesitamos confirmar tus datos, nos comunicaremos contigo antes del despacho.</p>"
-          }
-        },
-        "faq-4": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Cómo se deben usar los productos del dúo?",
-            "answer": "<p>Sigue las instrucciones indicadas en la etiqueta de cada producto. El gel es de uso externo.</p>"
-          }
-        },
-        "faq-5": {
-          "type": "faq",
-          "settings": {
-            "question": "¿Tienen efectos secundarios o contraindicaciones?",
-            "answer": "<p>Revisa los ingredientes y las instrucciones del empaque. Si tienes una condición médica o sensibilidad a alguno de sus componentes, consulta con un profesional de la salud antes de usarlo.</p>"
-          }
-        },
-        "related-1": {
-          "type": "related_product",
-          "settings": {
-            "product": "",
-            "image": "shopify://shop_images/1.jpg",
-            "title": "PROXIMAMENTE",
-            "price": "",
-            "link": ""
-          }
-        },
-        "related-2": {
-          "type": "related_product",
-          "settings": {
-            "product": "",
-            "image": "shopify://shop_images/2.jpg",
-            "title": "PROXIMAMENTE",
-            "price": "",
-            "link": ""
-          }
-        },
-        "related-3": {
-          "type": "related_product",
-          "settings": {
-            "product": "",
-            "image": "shopify://shop_images/Gemini_Generated_Image_g3z3llg3z3llg3z3.jpg",
-            "title": "PROXIMAMENTE",
-            "price": "",
-            "link": ""
-          }
-        },
-        "related_product_PUzUg4": {
-          "type": "related_product",
-          "settings": {
-            "product": "",
-            "image": "shopify://shop_images/wqw.jpg",
-            "title": "PROXIMAMENTE",
-            "price": "",
-            "link": ""
-          }
-        },
-        "related_product_zzU6BF": {
-          "type": "related_product",
-          "settings": {
-            "product": "",
-            "image": "shopify://shop_images/2_ed21742b-668d-4259-8b3e-d0c8827e982a.jpg",
-            "title": "PROXIMAMENTE",
-            "price": "",
-            "link": ""
-          }
-        },
-        "related_product_9jaLfJ": {
-          "type": "related_product",
-          "settings": {
-            "product": "",
-            "image": "shopify://shop_images/3.jpg",
-            "title": "PROXIMAMENTE",
-            "price": "",
-            "link": ""
+            "show_gift_card_recipient": false
           }
         }
       },
       "block_order": [
-        "gallery-1",
-        "gallery-2",
-        "gallery-3",
-        "gallery-4",
-        "review-1",
-        "review-2",
-        "review-3",
         "title",
-        "rating",
         "price",
         "variant_picker",
         "description",
-        "buy_buttons",
-        "product_benefits",
-        "carrier-logos",
-        "module-mero-macho",
-        "module-crece-miembro",
-        "faq-1",
-        "faq-2",
-        "faq-3",
-        "faq-4",
-        "faq-5",
-        "related-1",
-        "related-2",
-        "related-3",
-        "related_product_PUzUg4",
-        "related_product_zzU6BF",
-        "related_product_9jaLfJ"
+        "buy_buttons"
       ],
       "settings": {
         "background_color": "#ffffff",
         "text_color": "#4d0e13",
         "accent_color": "#e2c0bb",
-        "badge_text": "",
-        "product_title": "MERO MACHO + CRECE MIEMBRO",
-        "rating_score": 5,
-        "review_count": "+480 Clientes Satisfechos",
-        "price_text": "$79.900 COP",
-        "compare_price_text": "$120.900 COP",
-        "discount_label": "🔥Últimas unidades",
-        "introduction": "<p>Una combinación diseñada para hombres que quieren complementar sus momentos íntimos con energía, <strong>confianza y una experiencia más intensa</strong>.</p>",
-        "reviews_eyebrow": "",
-        "reviews_heading": "Reseñas de la comunidad",
-        "reviews_subheading": "Lee las experiencias de nuestros clientes.",
-        "reviews_background": "#d8c4ac",
-        "faq_heading": "Preguntas frecuentes",
-        "faq_background": "#eee4da",
-        "show_related_products": true,
-        "related_heading": "Productos relacionados",
-        "related_link": "",
-        "related_link_label": "Ver todos",
+        "product_title": "",
+        "rating_score": 0,
+        "price_text": "",
+        "compare_price_text": "",
+        "discount_label": "",
+        "introduction": "",
+        "show_related_products": false,
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
         "media_size": "medium",

@@ -1,0 +1,81 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1",
+            "alignment": "left"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_badges": true,
+            "show_payment_terms": false,
+            "alignment": "left"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "variant_picker",
+        "description",
+        "buy_buttons"
+      ],
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#4d0e13",
+        "accent_color": "#e2c0bb",
+        "product_title": "",
+        "rating_score": 0,
+        "price_text": "",
+        "compare_price_text": "",
+        "discount_label": "",
+        "introduction": "",
+        "show_related_products": false,
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "gallery_thumbnail_position": "left",
+        "gallery_thumbnail_size": 64,
+        "gallery_image_ratio": "square",
+        "gallery_image_fit": "contain",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

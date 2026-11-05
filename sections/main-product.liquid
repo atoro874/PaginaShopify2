@@ -1,7 +1,3 @@
-{%- if product == blank and request.page_type == 'index' -%}
-  {%- assign product = collections.all.products.first -%}
-{%- endif -%}
-
 {%- if product != blank -%}
 <product-info
   id="MainProduct-{{ section.id }}"
