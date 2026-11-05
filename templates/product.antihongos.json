@@ -144,8 +144,19 @@
         "module-mero-macho": {
           "type": "product_module",
           "settings": {
-            "tab_label": "Componentes y Función",
-            "heading": "Componentes y función",
+            "tab_label": "Componentes",
+            "heading": "Componentes",
+            "content": "",
+            "image": "",
+            "image_position": "right",
+            "image_fit": "cover"
+          }
+        },
+        "module-function": {
+          "type": "product_module",
+          "settings": {
+            "tab_label": "Función",
+            "heading": "Función",
             "content": "",
             "image": "",
             "image_position": "right",
@@ -272,6 +283,7 @@
         "product_benefits",
         "carrier-logos",
         "module-mero-macho",
+        "module-function",
         "faq-1",
         "faq-2",
         "faq-3",
