@@ -678,6 +678,15 @@
                         role="img"
                         aria-label="Calificación {{ section.settings.rating_score }} de 5{% if section.settings.review_count != blank %}; {{ section.settings.review_count | escape }}{% endif %}"
                       >
+                        {%- if section.settings.rating_profile_image != blank -%}
+                          <span class="zz-product-rating__profile">
+                            {{
+                              section.settings.rating_profile_image
+                              | image_url: width: 120
+                              | image_tag: loading: 'lazy', widths: '56, 84, 112', sizes: '5.6rem', alt: ''
+                            }}
+                          </span>
+                        {%- endif -%}
                         <span class="zz-product-rating__stars" aria-hidden="true">
                           {%- for star in (1..5) -%}
                             <span{% if star > section.settings.rating_score %} class="is-empty"{% endif %}>★</span>
@@ -962,7 +971,7 @@
       {%- assign review_blocks = section.blocks | where: 'type', 'review' -%}
       {%- if review_blocks.size > 0 -%}
         <section
-          class="zz-product-content zz-product-reviews"
+          class="zz-product-content zz-product-reviews{% if template.suffix == 'antihongos' %} zz-product-reviews--antihongos{% endif %}"
           style="--zz-reviews-background: {{ section.settings.reviews_background }};{% if section.settings.reviews_image != blank %} --zz-reviews-image: url('{{ section.settings.reviews_image | image_url: width: 2400 }}');{% endif %}"
           aria-labelledby="ReviewsHeading-{{ section.id }}"
         >
@@ -2904,6 +2913,11 @@
       "type": "text",
       "id": "review_count",
       "label": "Cantidad de comentarios"
+    },
+    {
+      "type": "image_picker",
+      "id": "rating_profile_image",
+      "label": "Foto de perfil junto a la calificación"
     },
     {
       "type": "text",

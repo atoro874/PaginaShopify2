@@ -338,6 +338,22 @@ product-info[id^='MainProduct-'] .zz-product-price .zz-product-price__badge {
   gap: 0.5rem;
 }
 
+.zz-product-rating__profile {
+  display: block;
+  width: 5.6rem;
+  height: 5.6rem;
+  flex: 0 0 5.6rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.zz-product-rating__profile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .zz-product-rating__stars,
 .zz-product-review__stars {
   color: var(--zz-product-accent, #b08023);
@@ -596,6 +612,13 @@ product-info[id^='MainProduct-'] .zz-product-price .zz-product-price__badge {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.zz-product-reviews--antihongos .zz-product-review__image {
+  width: 9rem;
+  height: 9rem;
+  margin: 1rem auto 0;
+  border-radius: 0.8rem;
 }
 
 .zz-product-faq {
