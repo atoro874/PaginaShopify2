@@ -112,6 +112,13 @@
     --color-foreground: 77, 14, 19;
     --gradient-background: #eee4da;
   }
+
+  {%- if request.page_type == 'product' and template.suffix == 'antihongos' -%}
+    .header-wrapper.color-scheme-1 {
+      --color-background: 226, 238, 224;
+      --gradient-background: #e2eee0;
+    }
+  {%- endif -%}
 </style>
 
 {%- style -%}
