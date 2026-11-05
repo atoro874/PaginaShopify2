@@ -143,7 +143,7 @@
             </div>
           {%- else -%}
             <div
-              class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+              class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}{% if collection.handle == 'all' %} catalog-collection{% endif %}"
             >
               <div class="loading-overlay gradient"></div>
               <ul
@@ -209,9 +209,9 @@
       "type": "range",
       "id": "products_per_page",
       "min": 8,
-      "max": 36,
+      "max": 48,
       "step": 4,
-      "default": 16,
+      "default": 36,
       "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
     },
     {

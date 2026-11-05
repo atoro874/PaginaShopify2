@@ -97,3 +97,44 @@
 .collection__view-all a:not(.link) {
   margin-top: 1rem;
 }
+
+.catalog-collection .card-information {
+  text-align: center;
+}
+
+.catalog-collection .card__heading {
+  display: flex;
+  justify-content: center;
+  min-height: 4.2rem;
+  line-height: 1.3;
+}
+
+.catalog-collection .card__heading a {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.catalog-collection .card__media img {
+  object-fit: contain;
+}
+
+.catalog-collection .card-wrapper {
+  height: 100%;
+  transition: transform 220ms ease;
+  transform-origin: center;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .catalog-collection .card-wrapper:hover {
+    z-index: 2;
+    transform: scale(1.035);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .catalog-collection .card-wrapper {
+    transition: none;
+  }
+}
