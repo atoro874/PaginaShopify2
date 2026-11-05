@@ -46,7 +46,8 @@
             "rating": 5,
             "quote": "<p>Tenía mis dudas de pedir esto por internet porque uno nunca sabe, pero me dio confianza poder pagar cuando el repartidor me entregó el paquete aquí en Bogotá. Lleva pocos días usándose en casa y ya se nota el cambio. 100% recomendado.<br/><br/></p>",
             "author": "Miriam G. (Cali)",
-            "image": "shopify://shop_images/Gemini_Generated_Image_t4pnhtt4pnhtt4pn.jpg"
+            "image": "shopify://shop_images/Gemini_Generated_Image_t4pnhtt4pnhtt4pn.jpg",
+            "profile_image": "shopify://shop_images/12.png"
           }
         },
         "review-2": {
@@ -55,7 +56,8 @@
             "rating": 5,
             "quote": "<p>Yo tenía el problema en el dedo gordo del pie y probé mil cosas caseras sin resultado. Con este gotero en dos semanas el cambio es tremendo, se nota la uña limpia. Lo mejor es que pedí el pago contra entrega para mi oficina en Envigado y llegó rapidísimo sin atados<br/><br/></p>",
             "author": "Santiago V. (Envigado)",
-            "image": "shopify://shop_images/tratamiento-hongos-unas-chamartin-madrid.jpg"
+            "image": "shopify://shop_images/tratamiento-hongos-unas-chamartin-madrid.jpg",
+            "profile_image": "shopify://shop_images/sfff.png"
           }
         },
         "review-3": {
@@ -63,7 +65,8 @@
           "settings": {
             "rating": 5,
             "quote": "<p>Súper recomendado. Al principio uno desconfía de comprar estas cosas por Facebook, pero que el repartidor me entregara el paquete sellado en la puerta de la casa y pagarle me dio total tranquilidad. Funciona muy bien!<br/><br/></p>",
-            "author": "Marcela G. (Villavicencio)"
+            "author": "Marcela G. (Villavicencio)",
+            "profile_image": "shopify://shop_images/33.png"
           }
         },
         "review_MX6NpE": {
@@ -71,7 +74,8 @@
           "settings": {
             "rating": 5,
             "quote": "<p>El producto rinde bastante y no es molestoso de aplicar. En mi caso empecé a notar que la picazón y el mal color se fueron quitando con los días. El envío a Manizales tardó solo dos días. Excelente servicio y cero complicaciones.<br/></p><p></p>",
-            "author": "Esteban R. (Manizales)"
+            "author": "Esteban R. (Manizales)",
+            "profile_image": "shopify://shop_images/1_4c99af05-a102-4609-b31a-f156aa31fc26.jpg"
           }
         },
         "title": {
