@@ -678,10 +678,10 @@
                         role="img"
                         aria-label="Calificación {{ section.settings.rating_score }} de 5{% if section.settings.review_count != blank %}; {{ section.settings.review_count | escape }}{% endif %}"
                       >
-                        {%- if section.settings.rating_profile_image != blank -%}
+                        {%- if block.settings.rating_profile_image != blank -%}
                           <span class="zz-product-rating__profile">
                             {{
-                              section.settings.rating_profile_image
+                              block.settings.rating_profile_image
                               | image_url: width: 120
                               | image_tag: loading: 'lazy', widths: '56, 84, 112', sizes: '5.6rem', alt: ''
                             }}
@@ -1955,6 +1955,11 @@
           "default": true
         },
         {
+          "type": "image_picker",
+          "id": "rating_profile_image",
+          "label": "Foto de perfil junto a la calificación"
+        },
+        {
           "type": "select",
           "id": "alignment",
           "label": "Alineación",
@@ -2913,11 +2918,6 @@
       "type": "text",
       "id": "review_count",
       "label": "Cantidad de comentarios"
-    },
-    {
-      "type": "image_picker",
-      "id": "rating_profile_image",
-      "label": "Foto de perfil junto a la calificación"
     },
     {
       "type": "text",
