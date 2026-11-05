@@ -9,6 +9,53 @@
  */
 {
   "sections": {
+    "home_hero": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Descubre nuestros productos",
+            "heading_size": "h0"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Encuentra la opción ideal para ti.",
+            "text_style": "body"
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Comprar ya",
+            "button_link_1": "#catalogo",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "buttons"
+      ],
+      "settings": {
+        "image_overlay_opacity": 30,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "scheme-1",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
+      }
+    },
     "home_story_one": {
       "type": "image-with-text",
       "blocks": {
@@ -113,6 +160,7 @@
     }
   },
   "order": [
+    "home_hero",
     "home_story_one",
     "home_story_two",
     "catalog"
