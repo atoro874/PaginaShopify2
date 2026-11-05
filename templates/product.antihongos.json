@@ -15,14 +15,14 @@
         "gallery-1": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/Prod_1.1.jpg",
+            "image": "shopify://shop_images/2_95f50f77-c734-42ab-b78e-b0d600497381.jpg",
             "alt": "Mero Macho"
           }
         },
         "gallery-2": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/as.jpg",
+            "image": "shopify://shop_images/s_5790f7fa-a466-4ff8-8694-a1eb94c53b92.jpg",
             "alt": "Nueva presentación"
           }
         },
@@ -36,7 +36,7 @@
         "gallery-4": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/zxzxzcxzc.jpg",
+            "image": "shopify://shop_images/Gemini_Generated_Image_u12flmu12flmu12f.jpg",
             "alt": "Presentación del producto"
           }
         },
