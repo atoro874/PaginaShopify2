@@ -28,25 +28,25 @@
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
 
-  {% if request.page_type == 'index' and section.settings.homepage_glass_style %}
-    #Banner-{{ section.id }} .banner__box.home-hero-glass {
+  {% if request.page_type == 'index' %}
+    #Banner-{{ section.id }} .banner__box {
       display: block;
       color: {{ section.settings.text_color }} !important;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.28)) !important;
-      border: 1px solid rgba(255, 255, 255, 0.62) !important;
+      background: linear-gradient(135deg, rgba(245, 249, 250, 0.58), rgba(232, 241, 243, 0.48)) !important;
+      border: 1px solid rgba(255, 255, 255, 0.75) !important;
       border-radius: 2rem !important;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.48), 0 1.2rem 4rem rgba(0, 0, 0, 0.2);
-      -webkit-backdrop-filter: blur(2.4rem) saturate(145%);
-      backdrop-filter: blur(2.4rem) saturate(145%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 1.2rem 4rem rgba(0, 0, 0, 0.22);
+      -webkit-backdrop-filter: blur(3.2rem) saturate(160%);
+      backdrop-filter: blur(3.2rem) saturate(160%);
     }
 
-    #Banner-{{ section.id }} .banner__box.home-hero-glass .banner__heading,
-    #Banner-{{ section.id }} .banner__box.home-hero-glass .banner__text {
+    #Banner-{{ section.id }} .banner__box .banner__heading,
+    #Banner-{{ section.id }} .banner__box .banner__text {
       color: {{ section.settings.text_color }} !important;
     }
 
     @media screen and (max-width: 749px) {
-      #Banner-{{ section.id }} .banner__box.home-hero-glass {
+      #Banner-{{ section.id }} .banner__box {
         box-sizing: border-box;
         width: calc(100% - 3.2rem);
         margin: 1.6rem;
@@ -144,7 +144,7 @@
     </div>
   {%- endif -%}
   <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient{% if request.page_type == 'index' and section.settings.homepage_glass_style %} home-hero-glass{% endif %}">
+    <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
@@ -354,12 +354,6 @@
     {
       "type": "header",
       "content": "Estilo especial de portada"
-    },
-    {
-      "type": "checkbox",
-      "id": "homepage_glass_style",
-      "label": "Glass Effect (solo portada)",
-      "default": false
     },
     {
       "type": "color",
