@@ -29,8 +29,18 @@
   }
 
   {% if request.page_type == 'index' %}
-    #Banner-{{ section.id }} .banner__content {
+    #Banner-{{ section.id }} {
+      animation: none !important;
+      opacity: 1 !important;
       transform: none !important;
+      will-change: auto !important;
+    }
+
+    #Banner-{{ section.id }} .banner__content {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      will-change: auto !important;
     }
 
     #Banner-{{ section.id }} .banner__box {
