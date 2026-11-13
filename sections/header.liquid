@@ -260,7 +260,7 @@
       {%- unless request.page_type == 'collection' and collection.handle == 'all' -%}
         <a
           class="header__catalog-link"
-          href="{% if request.page_type == 'index' %}#catalogo{% else %}{{ routes.all_products_collection_url }}{% endif %}"
+          href="{{ routes.all_products_collection_url }}"
         >
           Catálogo
         </a>

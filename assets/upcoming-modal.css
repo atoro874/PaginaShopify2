@@ -22,12 +22,6 @@
   line-height: 1.1;
 }
 
-#catalogo {
-  display: block;
-  height: 0;
-  scroll-margin-top: 10rem;
-}
-
 body:has(main[data-template='index']) .home-featured-products .product-grid {
   justify-content: center;
 }

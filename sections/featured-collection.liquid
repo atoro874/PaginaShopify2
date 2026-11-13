@@ -63,18 +63,11 @@
     assign show_desktop_slider = true
   endif
 
-  assign card_product_link = blank
-  if request.page_type == 'index'
-    assign card_product_link = routes.all_products_collection_url
-  endif
 -%}
 
 <div
   class="color-{{ section.settings.color_scheme }} isolate gradient"
 >
-  {%- if request.page_type == 'index' -%}
-    <span id="catalogo" class="home-catalog-anchor" aria-hidden="true"></span>
-  {%- endif -%}
   <div
     class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}{% if request.page_type == 'index' %} home-featured-products{% endif %}"
     id="collection-{{ section.id }}"
@@ -136,7 +129,6 @@
                   skip_styles: skip_card_product_styles,
                   section_id: section.id,
                   quick_add: section.settings.quick_add,
-                  card_link_url: card_product_link,
                   product_view_context: 'collection'
                 %}
               </li>
