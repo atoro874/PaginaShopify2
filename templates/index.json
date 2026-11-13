@@ -50,7 +50,7 @@
         "image_behavior": "none",
         "desktop_content_position": "middle-left",
         "desktop_content_alignment": "left",
-        "show_text_box": false,
+        "show_text_box": true,
         "color_scheme": "scheme-1",
         "text_color": "#141414",
         "stack_images_on_mobile": true,
