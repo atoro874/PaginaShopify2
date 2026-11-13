@@ -29,6 +29,10 @@
   }
 
   {% if request.page_type == 'index' %}
+    #Banner-{{ section.id }} .banner__content {
+      transform: none !important;
+    }
+
     #Banner-{{ section.id }} .banner__box {
       display: block;
       color: {{ section.settings.text_color }} !important;
