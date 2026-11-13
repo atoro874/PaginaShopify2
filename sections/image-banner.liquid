@@ -27,6 +27,33 @@
   #Banner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
+
+  {% if request.page_type == 'index' and section.settings.homepage_glass_style %}
+    #Banner-{{ section.id }} .banner__box.home-hero-glass {
+      display: block;
+      color: {{ section.settings.text_color }} !important;
+      background: rgba(255, 255, 255, 0.2) !important;
+      border: 1px solid rgba(255, 255, 255, 0.55) !important;
+      border-radius: 2rem !important;
+      box-shadow: 0 1.2rem 4rem rgba(0, 0, 0, 0.16);
+      -webkit-backdrop-filter: blur(1.4rem);
+      backdrop-filter: blur(1.4rem);
+    }
+
+    #Banner-{{ section.id }} .banner__box.home-hero-glass .banner__heading,
+    #Banner-{{ section.id }} .banner__box.home-hero-glass .banner__text {
+      color: {{ section.settings.text_color }} !important;
+    }
+
+    @media screen and (max-width: 749px) {
+      #Banner-{{ section.id }} .banner__box.home-hero-glass {
+        width: calc(100% - 3.2rem);
+        margin: 1.6rem;
+        padding: 2.4rem;
+        border-radius: 1.6rem !important;
+      }
+    }
+  {% endif %}
 {%- endstyle -%}
 
 {%- liquid
@@ -116,7 +143,7 @@
     </div>
   {%- endif -%}
   <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
+    <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient{% if request.page_type == 'index' and section.settings.homepage_glass_style %} home-hero-glass{% endif %}">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
@@ -322,6 +349,22 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Estilo especial de portada"
+    },
+    {
+      "type": "checkbox",
+      "id": "homepage_glass_style",
+      "label": "Glass Effect (solo portada)",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color del texto del banner",
+      "default": "#141414"
     },
     {
       "type": "header",
