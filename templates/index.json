@@ -10,14 +10,51 @@
 {
   "sections": {
     "home_hero": {
-      "type": "home-hero",
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Descubre nuestros productos</strong>",
+            "heading_size": "h0"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Comprar ya",
+            "button_link_1": "/collections/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "buttons"
+      ],
       "settings": {
         "image": "shopify://shop_images/Gemini_Generated_Image_drxhdrdrxhdrdrxh.jpg",
         "image_overlay_opacity": 30,
-        "heading": "Descubre nuestros productos",
-        "text": "",
-        "text_color": "#141414",
-        "button_label": "Comprar ya"
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": true,
+        "color_scheme": "scheme-1",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
       }
     },
     "home_story_one": {
