@@ -15,14 +15,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Descubre nuestros productos",
+            "heading": "<strong>Descubre nuestros productos</strong>",
             "heading_size": "h0"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "Encuentra la opción ideal para ti.",
+            "text": "",
             "text_style": "body"
           }
         },
@@ -44,6 +44,7 @@
         "buttons"
       ],
       "settings": {
+        "image": "shopify://shop_images/Gemini_Generated_Image_drxhdrdrxhdrdrxh.jpg",
         "image_overlay_opacity": 30,
         "image_height": "large",
         "image_behavior": "none",
@@ -135,7 +136,7 @@
       "settings": {
         "collection": "all",
         "products_to_show": 3,
-        "title": "Productos destacados",
+        "title": "Productos más queridos",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
