@@ -82,10 +82,11 @@
         "text"
       ],
       "settings": {
+        "image": "shopify://shop_images/Hey_Savi___YeahNice_-_London_brand_design_studio.jpg",
         "height": "large",
         "desktop_image_width": "medium",
         "layout": "text_first",
-        "image_behavior": "none",
+        "image_behavior": "ambient",
         "content_layout": "no-overlap",
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
@@ -102,14 +103,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Una selección para ti",
+            "heading": "Entrega segura",
             "heading_size": "h1"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Conoce nuestros productos y encuentra la opción ideal para ti.</p>",
+            "text": "<p>Pagas el producto cuando llegue a tu casa, atento a tu teléfono para que el repartidor se comunique contigo!</p>",
             "text_style": "body"
           }
         }
@@ -119,10 +120,11 @@
         "text"
       ],
       "settings": {
+        "image": "shopify://shop_images/We_pack_print_your_label_at_your_door.jpg",
         "height": "large",
         "desktop_image_width": "medium",
         "layout": "image_first",
-        "image_behavior": "none",
+        "image_behavior": "ambient",
         "content_layout": "no-overlap",
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
